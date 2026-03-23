@@ -67,7 +67,7 @@ Add a 1-2 sentence annotation explaining the copywriting technique and why it wo
 
 ### Per-title output format
 
-```
+```markdown
 ### Title [N]: [Format Type]
 
 **Title Tag** (XX chars): [title tag version]
