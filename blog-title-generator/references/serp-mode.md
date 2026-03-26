@@ -1,63 +1,91 @@
 # SERP Mode
 
-Fetches live Google top 10 through RankEarly, analyzes competitor titles, then generates titles grounded in what's actually ranking.
+Uses a saved keyword record from the keyword library, analyzes the stored top 10 SERP titles, then generates titles grounded in what is already ranking.
 
 This mode requires authenticating RankEarly MCP and consumes RankEarly credits.
 
-## Step 0: Resolve the Keywords for SERP Analysis
+## Step 0: Validate the Input
 
-- If the user already gave target keywords, confirm and use them directly
-- If the user gave a content idea or draft description, extract 3 candidate target keywords that people would realistically search to find this blog, then ask (`AskUserQuestion`) the user to choose any that fit or add more keywords
-- Only continue once the keyword list is confirmed
-- Tell the user clearly that this mode uses RankEarly MCP and spends RankEarly credits
+Confirm that blog context is already available, then require one target keyword for SERP mode.
 
-## Step 1: Fetch Live SERP Data
+- If the user provides blog context but no keyword, ask which keyword they want to target
+- If the user provides multiple keywords, ask them to choose one primary keyword
+- Tell the user clearly that this mode uses RankEarly MCP and may consume RankEarly credits if the keyword needs to be added to the library
 
-Call `scrape_serp` for each confirmed keyword to pull the top 10 Google results.
+Do not infer the keyword in SERP mode. Only continue once it is confirmed.
 
-```
-scrape_serp(query: "<keyword 1>")
-scrape_serp(query: "<keyword 2>")
-...
-```
+## Step 1: Resolve the Keyword Library
 
-Extract from each result:
-- Title (the actual title tag displayed in SERPs)
-- URL (domain only for display)
-- Position (1-10)
-- Snippet
+Resolve the keyword library directly in this step.
 
-## Step 2: Analyze SERP Patterns
+1. Call `list_keyword_libaries`.
+2. Use `AskUserQuestion` to present the available libraries as selectable options, plus one final option for creating a new library.
+3. Format the options like this:
 
-Analyze the top 10 competing titles for each keyword across these dimensions:
+   ```text
+   1. library1 - United States, English
+   2. library2 - United Kingdom, English
+   3. New library - specify the country and language
+   ```
+
+4. If the user selects an existing library, continue with that library ID.
+5. If the user selects `New library`, collect country and language with `AskUserQuestion` when they are not already provided.
+6. Call `create_keyword_library` with the chosen country and language.
+7. Store the selected library ID.
+
+## Step 2: Get the Keyword Record
+
+Check whether the confirmed keyword already exists in the selected library.
+
+1. Call `get_keyword(kw, keyword_library)`.
+2. If the keyword exists, use that saved keyword record and continue.
+3. If the keyword does not exist, ask for explicit permission before adding it:
+
+   ```text
+   This keyword is not in the selected keyword library. Do I have your permission to add it to the library first?
+   ```
+
+4. Only if the user explicitly grants permission, call `add_or_update_keyword(kw, keyword_library)`.
+5. After adding, call `get_keyword(kw, keyword_library)` again and use the saved record.
+6. If the user does not grant permission, stop and tell them SERP mode can only continue with a keyword that already exists in the selected library.
+
+Do not call `add_or_update_keyword` without explicit user permission when the keyword is missing.
+
+The keyword record should contain:
+- Keyword metrics such as search volume, keyword difficulty, intent, competition, and CPC when available
+- Top-10 SERP snapshot with titles, snippets, URLs, and positions
+
+## Step 3: Analyze SERP Patterns
+
+Analyze the top 10 competing titles for the single confirmed keyword across these dimensions, while keeping the user's actual blog context in mind:
 
 | Dimension | What to look for |
 |-----------|-----------------|
 | **Format distribution** | Count how many are how-tos, listicles, questions, comparisons, guides, other |
-| **Common terms** | Words/phrases appearing in 3+ titles — these are terms Google is rewarding |
+| **Common terms** | Words or phrases appearing in 3+ titles |
 | **Title length** | Mean and range of character lengths |
-| **Keyword placement** | How many front-load the keyword (first 3 words) vs. mid-place or bury it |
-| **Gaps and opportunities** | Formats, angles, or modifiers that NO competitor uses (e.g., no listicles = differentiation opportunity; no year tag = freshness signal is open) |
+| **Keyword placement** | How many front-load the keyword vs. mid-place or bury it |
+| **Gaps and opportunities** | Formats, angles, or modifiers that no competitor uses |
 
 Identify 2-3 explicit opportunity callouts.
 
-## Step 3: Generate 10 Title Variations
+## Step 4: Generate 10 Title Variations
 
-Generate 10 titles informed by the SERP analysis, the chosen keywords, and the format preference.
+Generate 10 titles informed by the user's blog context, the confirmed keyword, the SERP analysis, and the format preference.
 
-Read `references/title-formulas.md` for the title-generation rules and real-world high-performing title patterns. Use as inspiration, not templates.
+Read `references/title-formulas.md` for the title-generation rules and real-world high-performing title patterns. Use them as inspiration, not templates.
 
-### Mode-specific guidance
-
-- In **mix format**, weight toward formats underrepresented across the chosen SERPs (the gaps from Step 2)
-- Incorporate relevant common terms from Step 2 where natural
-- At least 2 titles should exploit a gap/opportunity from Step 2
+Mode-specific guidance:
+- In `mix` format, weight toward formats underrepresented in the saved SERP snapshot
+- Incorporate relevant common terms where natural
+- At least 2 titles should exploit a gap from Step 3
+- Keep the angles aligned with the user's actual planned blog, not just the keyword
 
 ## SERP-Specific Output
 
-Before the per-title output (defined in SKILL.md), present the SERP pattern analysis for each confirmed keyword:
+Before listing the 10 title variations, present:
 
-```
+```markdown
 ## SERP Pattern Analysis: [keyword]
 
 **Top 10 Competing Titles:**

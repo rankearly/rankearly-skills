@@ -1,13 +1,14 @@
 ---
 name: blog-title-generator
-description: Generate SEO blog titles, title tags, and H1 variations for a keyword or content idea. Use when the user wants blog title ideas, headline options, title tag suggestions, H1 variants, or SEO/CTR title optimization.
-allowed-tools: scrape_serp
+description: Generate SEO blog titles, title tags, and H1 variations for an SEO blog. Use when the user wants blog title ideas, headline options, title tag suggestions, H1 variants, or SEO/CTR title optimization for a planned or drafted blog post.
+allowed-tools: list_keyword_libaries create_keyword_library add_or_update_keyword get_keyword AskUserQuestion
 metadata:
   displayName: Blog Title Generator
   status: live
+  videoUrl: https://cdn.rankearly.pro/videos/blog-title-generator.mp4
   phases:
-    - name: Accept input
     - name: Choose mode (SERP-grounded or quick)
+    - name: Run mode-specific input + generation workflow
     - name: Generate 10 scored title variations
 ---
 
@@ -15,24 +16,24 @@ metadata:
 
 Generate 10 blog title variations, each with a title tag and H1, scored across 5 dimensions with a short explanation of why it works.
 
-## Phase 0: Accept Input
+## Shared Input Handling
 
-The user provides either:
-- A **target keyword** (short, query-like phrase) — use it directly in either mode
-- A **content idea or draft description** — use it as the working topic. Only resolve it into a keyword if the user chooses SERP mode
+Assume the user has a blog draft, blog file, or at least a blog idea. Do not generate titles from a bare keyword alone.
 
-Also accept an optional **format preference**: `how-to`, `listicle`, `question`, `comparison`, `ultimate-guide`, `curiosity`, or `mix` (default: `mix`).
+- If the user provides a blog file such as `abc.md`, read it and use it as the primary context
+- If the user provides a blog draft, outline, idea, or blog URL, use that as the content context
+- If the user provides only a keyword or short query, do not continue yet; ask what blog they plan to write so you have the actual post context
 
-Output: the captured input and format preference. Mode-specific handling lives in the reference files.
+Only continue into a mode after blog context is available.
 
-## Phase 1: Choose Mode
+## Phase 0: Choose Mode
 
-Ask the user (AskUserQuestion): **"Want live SERP-grounded titles first? That requires authenticating RankEarly MCP and consumes RankEarly credits. Or I can generate quick titles right away without RankEarly."**
+Ask the user (AskUserQuestion): **"Want SERP-grounded titles first? That requires authenticating RankEarly MCP and may consume RankEarly credits. Or I can generate quick titles right away without analyzing SERP."**
 
-- If the user wants SERP analysis → read `references/serp-mode.md` and follow it, then return here for Phase 2
-- If the user wants quick titles → read `references/quick-mode.md` and follow it, then return here for Phase 2
+- If the user wants SERP analysis -> read `references/serp-mode.md` and follow it, then return here for Phase 1
+- If the user wants quick titles -> read `references/quick-mode.md` and follow it, then return here for Phase 1
 
-## Phase 2: Score, Annotate, and Present
+## Phase 1: Score, Annotate, and Present
 
 After generating 10 title variations (from either mode), apply the following to each title.
 
@@ -43,7 +44,7 @@ For each of the 10 variations, produce:
 - **Title Tag** — CTR-optimized for SERP display. Usually aim for 50-65 characters, but go longer when clarity wins. Front-load the primary phrase when possible.
 - **H1** — Reader-optimized for on-page experience. No character cap. Can be more conversational, descriptive, or provocative.
 
-In SERP mode, optimize each title around one of the confirmed keywords. In quick mode, optimize around the user's original topic or phrase.
+In SERP mode, optimize each title around the confirmed keyword and the blog context. In quick mode, optimize around the user's blog context.
 
 ### Score each title
 
