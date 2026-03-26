@@ -1,6 +1,6 @@
 ---
 name: serp-gap-analysis
-description: Analyze a Google SERP to assess keyword winnability, identify content gaps, and optionally generate a differentiated content brief. Use when the user wants to evaluate whether a keyword is worth targeting, understand what competitors rank for, find content opportunities, do a SERP analysis, check keyword difficulty with real data, or plan content that can compete with existing search results. Also trigger when the user mentions gap analysis, competitor analysis for SEO, or content strategy for a specific keyword.
+description: Assess keyword winnability from a live Google SERP, find competitor content gaps, and generate an SEO content brief. Use when the user asks for SERP analysis, keyword difficulty with real results, SEO competitor analysis, content gap analysis, or a content plan for a specific keyword or query.
 allowed-tools: list_keyword_libaries list_projects create_keyword_library add_or_update_keyword get_keyword analyze_serp get_research_status AskUserQuestion
 metadata:
   displayName: SERP Gap Analysis
