@@ -1,114 +1,83 @@
 ---
 name: serp-gap-analysis
-description: Assess whether a SERP is winnable based on competitive signals, then analyze weaknesses in ranking pages to surface content opportunities you can exploit.
-allowed-tools: scrape_serp
+description: Analyze a Google SERP to assess keyword winnability, identify content gaps, and optionally generate a differentiated content brief. Use when the user wants to evaluate whether a keyword is worth targeting, understand what competitors rank for, find content opportunities, do a SERP analysis, check keyword difficulty with real data, or plan content that can compete with existing search results. Also trigger when the user mentions gap analysis, competitor analysis for SEO, or content strategy for a specific keyword.
+allowed-tools: list_keyword_libaries list_projects create_keyword_library add_or_update_keyword get_keyword analyze_serp get_research_status AskUserQuestion
 metadata:
   displayName: SERP Gap Analysis
   status: live
   phases:
-    - name: Fetch live Google top-10 results
-    - name: Score SERP competitiveness
-    - name: Audit each page for gaps
-    - name: Surface actionable recommendations
+    - name: Collect input and resolve keyword library
+    - name: Quick winnability assessment
+    - name: Deep content gap analysis
+    - name: Content brief with information gain (optional)
 ---
 
 # SERP Gap Analysis
 
-Assess whether a SERP is winnable based on competitive signals, then analyze weaknesses in the ranking pages to surface content opportunities.
+Evaluate whether a keyword is realistically worth pursuing, then turn the live SERP into a compact brief that explains what content is required to compete and where the opportunity exists.
 
-## Workflow
+The skill has two required phases. An optional Phase 3 runs only if the user explicitly opts in after Phase 2. Each phase has a corresponding output template in `templates/`.
 
-Four phases, run in order:
+## Phase 0: Collect Input and Resolve Keyword Library
 
-0. **SERP Fetch** — Retrieve live search results for the keyword
-1. **Winnability Assessment** — Can this SERP realistically be won?
-2. **Weak Spot Analysis** — Where exactly are the ranking pages falling short?
-3. **Content Opportunities** — What should the user do about it?
+Resolve the keyword, ask the user to choose from a library option list that includes existing libraries plus `New keyword library`, then fetch fresh SERP data.
 
-## Phase 0: SERP Fetch
+Read `references/input-and-library.md` for the full process.
 
-Before any analysis, call the `scrape_serp` MCP tool to retrieve live Google results:
+**Result**: a saved keyword record with top-10 SERP data and keyword metrics ready for Phase 1.
 
-```
-scrape_serp(query: "<keyword>")
-```
+## Phase 1: Quick Winnability Assessment (subagent)
 
-This returns the top-10 organic results with title, URL, snippet, position, and date. Use these results as the raw input for all subsequent phases. Do not ask the user to provide SERP data manually.
+Determine whether the SERP is worth pursuing before investing in deeper analysis.
 
-## Phase 1: Winnability Assessment
+Read `references/winnability-rubric.md` for the verdict criteria, signal definitions, and scoring rules.
 
-Assess winnability at the SERP snippet level using the results from Phase 0 — no need to fetch full page content yet. The goal is a quick triage so the user doesn't invest time diving deep into a hard-to-win SERP.
+Use the keyword record from Phase 0 — the saved top-10 SERP titles, snippets, URLs, positions, plus keyword-level metrics (search volume, keyword difficulty, search intent, competition level).
 
-Score the SERP by checking for these signals:
+**Deliverables**:
+- Winnability verdict: `Winnable`, `Challenging`, or `Hard-to-Win`
+- Search intent brief: 1 sentence
+- Key signals summary: 3-5 bullets
+- Recommendation: continue to Phase 2 or skip with reasoning
 
-**Positive signals** (suggest the SERP is beatable):
-- Stale pages ranking high (last updated 6+ months ago)
-- Low keyword difficulty (KD)
-- Mixed results — small brands, forums, UGC, or low-authority domains hold at least 5 of the top 10 spots
-- Results with mismatched search intent (e.g., informational page ranking for a transactional query)
+**Output**: use template from `templates/phase-1-winnability.md`.
 
-**Negative signals** (suggest the SERP is hard to crack):
-- High keyword difficulty (KD)
-- Big brands or high-authority domains dominate at least 5 of the top 10 spots
+## Phase 2: Deep Content Gap Analysis (subagent)
 
-**Verdict logic:**
-- 2+ positive signals, 0 negative → **Winnable**
-- 1+ negative signals → **Hard-to-win**
-- Otherwise → **Challenging**
+Analyze competitor weaknesses and define content requirements from the top 10 ranking pages.
 
-**What to do next:**
-- **Winnable**: Summarize the search intent, then proceed to Phase 2.
-- **Hard-to-win** / **Challenging**: Stop and ask the user whether they still want to see the weak spots before continuing. They may decide to target a different keyword instead.
+Read `references/content-gap-process.md` for the async workflow and analysis approach.
 
-## Phase 2: Weak Spot Analysis (parallel subagents)
+**Workflow summary**:
+1. `analyze_serp(kw, keyword_library, mode: "content_gap_analysis")` to start async analysis
+2. Poll `get_research_status(task_id)` until complete
+3. Present the consolidated result — `analyze_serp` already handles the full analysis internally
 
-Spawn one subagent per ranking page to analyze it independently. Parallel execution keeps this fast — each page analysis is self-contained.
+**Deliverables**:
+- Must-have topics (table stakes)
+- Target length range and content format recommendation
+- Weakness analysis
 
-**Subagent input:**
-- Ranking position (1-10)
-- Page URL
-- Last updated date
-- Search intent summary (from Phase 1)
+**Output**: use template from `templates/phase-2-content-gap.md`.
 
-**Subagent instructions — evaluate the page against these dimensions:**
+After presenting Phase 2, end the reply with one natural question that does both:
 
-| Dimension | What to look for |
-|-----------|-----------------|
-| **Answer sufficiency** | Does the page actually solve the searcher's intent? Does it answer the core question, or does it dance around it? |
-| **Originality** | Does the content show original thinking — unique data, first-hand experience, original viewpoints? Or is it a rehash of other search results? |
-| **Credibility** | Are sources cited? Is there a visible author with relevant expertise? Does the site show clear ownership and authority signals? |
-| **Freshness** | Was the page updated in the last 6 months? Are the examples, data, and recommendations current? |
-| **Readability** | Is the content easy to consume? Good structure, scannable headings, appropriate length? Or is it a wall of text? |
+- asks whether to continue and create a content brief with an outline of H2 - description sections
+- asks what business, product, feature set, firsthand experience, or proprietary data the user can bring that competitors do not cover
 
-For each dimension where the page is weak, record a short explanation of the specific weakness (not just "weak on originality" — say what's actually missing).
+Continue to Phase 3 only when the user explicitly says yes. Use the user's reply as the primary source of business or product context. End the skill after Phase 2 when the user declines.
 
-**Subagent output:** Save results to `./serp-gap/{query}/{ranking-position}.json`:
+## Phase 3: Content Brief with Information Gain and Outline
 
-```json
-{
-  "position": 3,
-  "url": "https://example.com/page",
-  "last_updated": "2024-08-15",
-  "weak_spots": [
-    {
-      "dimension": "freshness",
-      "detail": "Last updated 14 months ago. References 2023 pricing that has since changed."
-    },
-    {
-      "dimension": "originality",
-      "detail": "No original data or first-hand experience. Restates common advice found on every competitor page."
-    }
-  ]
-}
-```
+Only runs if the user explicitly says yes after Phase 2.
 
-## Phase 3: Content Opportunities
+Read `references/information-gain.md` for how to collect and apply the user's unique context.
 
-After all subagents complete, unify the weak spot data from `./serp-gap/{query}/` into a list of content opportunities — specific, actionable recommendations the user can act on.
+Use the context the user provides in response to the Phase 2 question before generating the brief. Build differentiation from the user's actual context. If they say yes but do not provide enough detail, ask one short follow-up about the missing business, product, feature, experience, or proprietary-data context.
 
-Each opportunity should connect a recurring weakness across multiple ranking pages to a concrete action. For example, if 4 of the top 10 pages lack original data, the opportunity is "Include original benchmarks or case study data — most competitors rely on generic advice."
+**Deliverables**:
+- Information gain analysis
+- Angle recommendations
+- Outline as H2 - description pairs
 
-**Before generating opportunities, ask the user:**
-- Do you already have an article targeting this keyword?
-  - **Yes** → Run Weak Spot Analysis on their article too, then frame opportunities as improvements to their existing content.
-  - **No** → Frame opportunities as requirements for a new article. Suggest using the `content-brief` skill as the next step.
+**Output**: use template from `templates/phase-3-content-brief.md`.

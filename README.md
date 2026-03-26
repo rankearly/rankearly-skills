@@ -38,16 +38,6 @@ Skills run the playbook. RankEarly MCP powers the data and algorithms — live S
 claude mcp add --transport http rankearly-mcp https://rankearly.pro/api/mcp
 ```
 
-### MCP Tools
-
-| Tool | Description |
-|------|-------------|
-| `scrape_serp` | Fetch live Google top-10 results for a query |
-| `expand_keywords` | Start async keyword expansion for a topic |
-| `cluster_keywords` | Group keywords into pillars and subtopics |
-| `get_research_status` | Poll async task status |
-| `fetch_data` | Read project and keyword library data |
-
 ## Browse skills
 
 Visit [rankearly.pro/skills](https://www.rankearly.pro/skills) to browse skills with install instructions and workflow details.
