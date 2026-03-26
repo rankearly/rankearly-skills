@@ -1,6 +1,6 @@
 ---
 name: blog-title-generator
-description: Generate 10 scored blog title variations (title tag + H1) for a target keyword or content idea. Use for blog titles, headline ideas, title tag suggestions, H1 recommendations, and SEO/CTR title optimization.
+description: Generate SEO blog titles, title tags, and H1 variations for a keyword or content idea. Use when the user wants blog title ideas, headline options, title tag suggestions, H1 variants, or SEO/CTR title optimization.
 allowed-tools: scrape_serp
 metadata:
   displayName: Blog Title Generator

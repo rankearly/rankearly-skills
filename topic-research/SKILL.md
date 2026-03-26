@@ -1,6 +1,6 @@
 ---
 name: topic-research
-description: Build a pillar-cluster content architecture from a project's features, product characteristics, or service offerings using RankEarly's keyword expansion and clustering tools. Use when the user wants to do keyword research, find content topics, build a content strategy, create a topic map, or plan what articles to write for their site.
+description: Build topic clusters and pillar content plans from a site's product, features, or services using RankEarly keyword research. Use when the user asks for keyword research, content topics, topic maps, content clusters, content strategy, or ideas for what pages or articles to create.
 allowed-tools: expand_keywords cluster_keywords get_research_status fetch_data
 metadata:
   displayName: Topic Research
