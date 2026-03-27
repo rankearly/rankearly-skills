@@ -5,27 +5,11 @@
 | Item | Required? | Notes |
 |------|-----------|-------|
 | **Keyword** | Yes | The search query to analyze |
-| **Library selection** | Yes | The user must pick one option from the library list |
-
-Start with an `AskUserQuestion` that lets the user select one library option.
+| **Library selection** | Yes | Resolve or create one keyword library before fetching keyword data |
 
 ## Resolve the keyword library
 
-1. Call `list_keyword_libaries`.
-2. Use `AskUserQuestion` to present the available libraries as selectable options, plus one final option for creating a new library.
-3. Format the options like this:
-
-   ```text
-   1. library1 - United States, English
-   2. library2 - United Kingdom, English
-   3. New library - specify the country and language
-   ```
-
-4. If the user selects an existing library, continue with that library ID.
-5. If the user selects `New library`, collect country and language with `AskUserQuestion` when they are not already provided.
-6. Call `create_keyword_library` with the chosen country and language for the new library.
-   - Recommended naming format: `Keywords_{COUNTRY}_{LANGUAGE}`, e.g. `Keywords_US_EN`
-7. Continue with the selected or newly created library ID.
+Read `./references/keyword-library-resolution.md` and resolve `keyword_library` before fetching keyword data.
 
 ## Fetch fresh keyword data
 
@@ -40,4 +24,4 @@ The keyword record contains everything needed for Phase 1:
 - Keyword-level metrics: search volume, keyword difficulty, search intent, competition level, CPC
 - Top-10 SERP snapshot: titles, snippets, URLs, and positions
 
-Store the keyword record, library ID, and keyword metrics for use in all subsequent phases.
+Store the keyword record, `keyword_library`, and keyword metrics for use in all subsequent phases.

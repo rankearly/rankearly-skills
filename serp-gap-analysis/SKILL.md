@@ -1,7 +1,7 @@
 ---
 name: serp-gap-analysis
 description: Analyze a live Google SERP for keyword winnability, competitor gaps, and SEO content brief creation. Use when the user asks for SERP analysis, real-result keyword difficulty, SEO competitor analysis, content gap analysis, or a brief or content plan for a specific keyword or query.
-allowed-tools: list_keyword_libaries list_projects create_keyword_library add_or_update_keyword get_keyword analyze_serp get_research_status AskUserQuestion
+allowed-tools: list_keyword_libaries create_keyword_library add_or_update_keyword get_keyword analyze_serp get_research_status AskUserQuestion
 metadata:
   displayName: SERP Gap Analysis
   status: live
@@ -20,7 +20,7 @@ The skill has two required phases. An optional Phase 3 runs only if the user exp
 
 ## Phase 0: Collect Input and Resolve Keyword Library
 
-Resolve the keyword, ask the user to choose from a library option list that includes existing libraries plus `New keyword library`, then fetch fresh SERP data.
+Resolve the keyword library, then fetch fresh SERP data for the keyword.
 
 Read `references/input-and-library.md` for the full process.
 

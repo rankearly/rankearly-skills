@@ -16,38 +16,23 @@ Do not infer the keyword in SERP mode. Only continue once it is confirmed.
 
 ## Step 1: Resolve the Keyword Library
 
-Resolve the keyword library directly in this step.
-
-1. Call `list_keyword_libaries`.
-2. Use `AskUserQuestion` to present the available libraries as selectable options, plus one final option for creating a new library.
-3. Format the options like this:
-
-   ```text
-   1. library1 - United States, English
-   2. library2 - United Kingdom, English
-   3. New library - specify the country and language
-   ```
-
-4. If the user selects an existing library, continue with that library ID.
-5. If the user selects `New library`, collect country and language with `AskUserQuestion` when they are not already provided.
-6. Call `create_keyword_library` with the chosen country and language.
-7. Store the selected library ID.
+Read `./references/keyword-library-resolution.md` and resolve `keyword_library`.
 
 ## Step 2: Get the Keyword Record
 
-Check whether the confirmed keyword already exists in the selected library.
+Check whether the confirmed keyword already exists in the resolved library.
 
 1. Call `get_keyword(kw, keyword_library)`.
 2. If the keyword exists, use that saved keyword record and continue.
 3. If the keyword does not exist, ask for explicit permission before adding it:
 
    ```text
-   This keyword is not in the selected keyword library. Do I have your permission to add it to the library first?
+   This keyword is not in the resolved keyword library. Do I have your permission to add it to the library first?
    ```
 
 4. Only if the user explicitly grants permission, call `add_or_update_keyword(kw, keyword_library)`.
 5. After adding, call `get_keyword(kw, keyword_library)` again and use the saved record.
-6. If the user does not grant permission, stop and tell them SERP mode can only continue with a keyword that already exists in the selected library.
+6. If the user does not grant permission, stop and tell them SERP mode can only continue with a keyword that already exists in the resolved library.
 
 Do not call `add_or_update_keyword` without explicit user permission when the keyword is missing.
 
