@@ -29,7 +29,7 @@ Pass the topic content directly to `expand_keywords`. Do not summarize the MCP i
 For each confirmed topic:
 
 1. Call `expand_keywords(topic, keyword_library)` with the topic content.
-2. Poll `get_research_status(task_id)` until `"completed"` or `"failed"`.
+2. Poll `get_research_status(task_id)` until `"completed"` or `"failed"`. Wait 30 seconds before the first poll, then wait 10 seconds between each subsequent poll.
 3. If insufficient keywords are returned, retry with a refined topic description, up to 5 retries.
 4. Report progress after each topic completes.
 

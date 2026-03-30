@@ -5,6 +5,7 @@ allowed-tools: list_keyword_libaries create_keyword_library expand_keywords clus
 metadata:
   displayName: Topic Research
   status: live
+  videoUrl: https://cdn.rankearly.pro/videos/keyword-expansion.mp4
   phases:
     - name: Resolve requested action
     - name: Resolve keyword library
