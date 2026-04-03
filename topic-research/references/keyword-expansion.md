@@ -2,39 +2,58 @@
 
 Run keyword expansion against the resolved `keyword_library`.
 
-## Gather or Confirm Topics
+## Gather Input
 
-Ask the user to explicitly specify what topic or topics to gather before collecting context. For example:
+Infer the input mode from the user's request:
 
+- **Topic** — when the user describes a topic, product, feature, or content idea
+- **Keywords** — when the user provides a comma-separated list of seed keywords
+
+If the user provides neither a topic nor seed keywords, ask them to provide one. Never hallucinate input.
+
+**Topic mode**: The user may provide:
 - a document or local file path
 - a URL
 - a brief product or topic description
 - code files
-- ...
+- community discussions, user feedback, customer questions
 
-Any format is acceptable as long as it gives enough context to define a valid topic for SEO planning.
+Read the provided content and convert it into a markdown topic. Requirements: at least 20 characters, less than 400 words, user-centric and honest.
 
-For the gathered context, turn it into a markdown topic that the user wants to use for keyword expansion.
+**Keywords mode**: Parse the user's comma-separated keywords (1-30 keywords).
 
-Topic content requirements:
-- less than 400 words
-- user-centric and honest
-- describes what the product, feature, or service can actually support
-- describes the realistic value it can bring to the audience
+## Infer Effort Level
 
-Pass the topic content directly to `expand_keywords`. Do not summarize the MCP internals to the user.
+Effort controls how many seeds are used:
+
+| Effort | Value | Max Seeds |
+|--------|-------|-----------|
+| Ultra Low | `xlow` | 1 |
+| Low | `low` | 5 |
+| Medium | `medium` | 10 |
+| High | `high` | 20 |
+| Ultra High | `xhigh` | 30 |
+
+Infer effort from the topic breadth or seed count:
+
+| Effort | When to Use |
+|--------|-------------|
+| `xlow` | A specific keyword to expand |
+| `low` | Niche topic or explicit low-effort request |
+| `medium` | Common, specific topic (default) |
+| `high` | Broad topic with diverse angles |
+| `xhigh` | Explicit request for extensive search |
+
+For keywords mode: if seed count exceeds the inferred effort's limit, use a higher effort.
 
 ## Run Expansion
 
-For each confirmed topic:
-
-1. Call `expand_keywords(topic, keyword_library)` with the topic content.
+1. Call `expand_keywords` with the appropriate parameters:
+   - Topic mode: `expand_keywords(topic, keyword_library, effort)`
+   - Keywords mode: `expand_keywords(seeds, keyword_library, effort)`
 2. Poll `get_research_status(task_id)` until `"completed"` or `"failed"`. Wait 30 seconds before the first poll, then wait 10 seconds between each subsequent poll.
-3. If insufficient keywords are returned, retry with a refined topic description, up to 5 retries.
-4. Report progress after each topic completes.
+3. Report results when complete.
 
-Target counts per topic:
-- Narrow topic: 100-200 keywords (1-2 iterations)
-- Broad topic: 300-500 keywords (3-5 iterations)
+Expansion runs exactly once per call — no retry loop. If the user wants more keywords, run another expansion with a different topic or higher effort.
 
 Stop after keyword expansion unless the user also explicitly requested topic clustering.
