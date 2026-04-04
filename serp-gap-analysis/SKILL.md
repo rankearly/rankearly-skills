@@ -9,14 +9,13 @@ metadata:
     - name: Collect input and resolve keyword library
     - name: Quick winnability assessment
     - name: Deep content gap analysis
-    - name: Content brief with information gain (optional)
 ---
 
 # SERP Gap Analysis
 
 Evaluate whether a keyword is realistically worth pursuing, then turn the live SERP into a compact brief that explains what content is required to compete and where the opportunity exists.
 
-The skill has two required phases. An optional Phase 3 runs only if the user explicitly opts in after Phase 2. Each phase has a corresponding output template in `templates/`.
+The skill has three required phases. Each phase has a corresponding output template in `templates/`.
 
 ## Phase 0: Collect Input and Resolve Keyword Library
 
@@ -60,24 +59,4 @@ Read `references/content-gap-process.md` for the async workflow and analysis app
 
 **Output**: use template from `templates/phase-2-content-gap.md`.
 
-After presenting Phase 2, end the reply with one natural question that does both:
-
-- asks whether to continue and create a content brief with an outline of H2 - description sections
-- asks what business, product, feature set, firsthand experience, or proprietary data the user can bring that competitors do not cover
-
-Continue to Phase 3 only when the user explicitly says yes. Use the user's reply as the primary source of business or product context. End the skill after Phase 2 when the user declines.
-
-## Phase 3: Content Brief with Information Gain and Outline
-
-Only runs if the user explicitly says yes after Phase 2.
-
-Read `references/information-gain.md` for how to collect and apply the user's unique context.
-
-Use the context the user provides in response to the Phase 2 question before generating the brief. Build differentiation from the user's actual context. If they say yes but do not provide enough detail, ask one short follow-up about the missing business, product, feature, experience, or proprietary-data context.
-
-**Deliverables**:
-- Information gain analysis
-- Angle recommendations
-- Outline as H2 - description pairs
-
-**Output**: use template from `templates/phase-3-content-brief.md`.
+After presenting Phase 2, ask whether the user wants to continue to create a draft. If yes, hand off to the `draft-creator` skill with the content requirements gathered in this phase. The draft-creator skill will handle information gain research and outline creation.

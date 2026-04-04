@@ -1,10 +1,17 @@
 # Source Reader (subagent)
 
-You receive a URL to read and the current contents of `knowledge-base.md`. Your job is to extract knowledge and surface gaps.
+You receive a URL to read, the **topic**, and the current contents of `knowledge-base.md`. Your job is to extract knowledge and surface gaps.
+
+## Relevance filter
+
+Before extracting anything, apply this test: **Does this knowledge directly help a reader who searched for {topic}?**
+
+- If yes → extract it
+- If no → skip it, even if it's interesting or related to the broader domain
 
 ## Extracting knowledge entries
 
-Read the guide and extract up to 10 knowledge entries that are important to the topic. Each entry has:
+Read the guide and extract up to 10 knowledge entries that are relevant to the topic. Each entry has:
 
 ```markdown
 ### {title} [depth: {L|M|H}]
@@ -26,7 +33,11 @@ The knowledge base should converge toward ~30 entries total across all guides. T
 
 ## Discovering under-discussed topics
 
-After extracting knowledge, ask 3-5 practical questions that a searcher would genuinely care about but that the guide didn't adequately answer. Think about what someone would still need to Google after reading this guide.
+After extracting knowledge, ask 3-5 practical questions that:
+1. A searcher for {topic} would genuinely care about
+2. The guide didn't adequately answer
+
+Think about what someone would still need to Google after reading this guide.
 
 For each question, check the knowledge base:
 - If a knowledge entry at depth M or H covers the question, drop it — the knowledge base already handles it.
