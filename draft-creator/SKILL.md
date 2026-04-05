@@ -7,6 +7,7 @@ metadata:
   phases:
     - name: Gather requirements
     - name: Find information gain
+    - name: Select conversion hooks
     - name: Create outline
 ---
 
@@ -65,7 +66,20 @@ Run the `content-researcher` skill. This produces:
 
 Information gain = what the reader still cannot do, decide, understand, or trust after reading the top results. The under-discussed questions are your information gain.
 
-## 3. Create Outline (subagent)
+## 3. Select Conversion Hooks (subagent)
+
+If seo-memory was loaded, scan it and pick the pieces that naturally fit this article's topic and reader intent:
+
+- **Offerings** — which capabilities/benefits are directly relevant to the reader's problem?
+- **Pricing** — is there a free tier or low-commitment entry point worth mentioning?
+- **Audience** — which segment matches the target reader? Use their pain points and goals to frame the narrative.
+- **Positioning** — any differentiator that answers a question the reader would naturally ask?
+
+Write a short selection (a few bullet points) into `./blogs/<topic>/conversion-hooks.md` — what you picked and where it fits in the article. These are not ads; they should feel like natural examples, proof points, or recommendations within the content.
+
+If seo-memory was not loaded, skip this step.
+
+## 4. Create Outline (subagent)
 
 Use this structure, adapting to content format and word count:
 
@@ -82,6 +96,7 @@ Use this structure, adapting to content format and word count:
 - **Word count** — expand or compress sections accordingly
 - **Must-have topics** — verify knowledge base has content to cover each
 - **Under-discussed questions** — integrate 2-3 as your information gain
+- **Conversion hooks** — place them where they serve the reader (e.g., a product capability as a concrete example in the framework section, a free tier mention in the next-step conclusion). Mark these placements in the outline with `[hook: ...]`.
 
 ### Output Format
 
