@@ -60,7 +60,7 @@ Web-search each query. From the combined results, select the top 5-8 pages that 
 
 ## Step 3. Read and extract (subagent per source)
 
-For each selected source, spawn a subagent with **the topic** and the current knowledge base. Read `./references/guide-reader.md` for the subagent prompt. Each subagent reads the source and returns extracted knowledge entries plus discovered questions.
+For each selected source, spawn a subagent with the **topic**, a **ref ID** (sequential: [1], [2], ...), and the current knowledge base. Read `./references/guide-reader.md` for the subagent prompt. Each subagent reads the source and returns extracted knowledge entries plus discovered questions.
 
 After each source is processed, merge its output into the two shared files.
 

@@ -12,6 +12,15 @@ metadata:
 
 Create a content draft from a topic idea or content requirements.
 
+## 0. Load Project Context
+
+Look for `./seo-memory.md` (the default seo-memory location).
+
+- **File exists and readable** — load it. Use this context throughout the draft to keep product references, terminology, and positioning accurate.
+- **File doesn't exist or inaccessible** — ask the user: "I don't see a project memory file (`seo-memory.md`). Would you like to run `/seo-memory` first to capture your project context? This helps me weave accurate product references into the blog. If not, I'll skip this step."
+  - If yes — run the `seo-memory` skill, then continue.
+  - If no — proceed without project context.
+
 ## 1. Gather Requirements
 
 Ask the user what they want to write about if not provided.

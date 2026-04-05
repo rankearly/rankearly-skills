@@ -1,6 +1,16 @@
 # Source Reader (subagent)
 
-You receive a URL to read, the **topic**, and the current contents of `knowledge-base.md`. Your job is to extract knowledge and surface gaps.
+You receive a URL to read, the **topic** and the current contents of `knowledge-base.md`. Your job is to extract knowledge and surface gaps. Every source reader is assigned with a unique ref ID.
+
+## Reference tracking
+
+The knowledge base maintains a `## References` section at the top.
+
+Append your source to the list:
+
+```markdown
+- [ref:N] https://your-source-url.com
+```
 
 ## Relevance filter
 
@@ -17,7 +27,11 @@ Read the guide and extract up to 10 knowledge entries that are relevant to the t
 ### {title} [depth: {L|M|H}]
 
 {description — 200 words max}
+
+[{existing refs} ...] + [{ref ID}]
 ```
+
+Include the ref ID (e.g., `[3]`) at the end of the description.
 
 **Depth labels** indicate how well the entry covers the sub-topic:
 - **H** (high) — the entry explains the sub-topic thoroughly enough that a reader could act on it without further research
