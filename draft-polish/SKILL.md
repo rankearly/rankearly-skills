@@ -1,6 +1,13 @@
 ---
-name: blog-writing
-description: Write or rewrite blog posts from the user's draft. Use when the user provides a draft and asks to clean it up, rewrite it, or polish it for publishing. Not for marketing copy or landing pages — see copywriting skill.
+name: draft-polish
+description: Polish blog drafts while preserving the author's voice and intent. Use when the user provides a draft and asks to clean it up, fix grammar, or tighten prose for publishing.
+metadata:
+  displayName: Draft Polish
+  status: live
+  phases:
+    - name: Read and understand draft
+    - name: Edit for clarity and grammar
+    - name: Quality check against original
 ---
 
 ## Source of truth: the user's draft

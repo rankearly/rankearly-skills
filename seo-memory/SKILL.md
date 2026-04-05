@@ -1,6 +1,13 @@
 ---
 name: seo-memory
 description: Maintain a project knowledge file for SEO content creation. Use when the user shares critical context about their project — product renames, new/removed features, service changes, subproduct launches, pricing updates, audience shifts, or any factual change that SEO content should reflect. Also triggers on "update seo memory", "remember this for content", or when the user corrects a factual detail about their product/service. Even small updates matter — stale project facts in published content erode trust.
+metadata:
+  displayName: SEO Memory
+  status: live
+  phases:
+    - name: Locate memory file
+    - name: Capture the update
+    - name: Confirm and summarize
 ---
 
 Track project knowledge so every content skill has accurate, up-to-date context about the user's product, service, or business.
