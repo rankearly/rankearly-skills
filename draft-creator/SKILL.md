@@ -22,37 +22,18 @@ Look for `./seo-memory.md` (the default seo-memory location).
   - If yes — run the `seo-memory` skill, then continue.
   - If no — proceed without project context.
 
-## 1. Gather Requirements
+## 1. Gather Requirements (subagent)
 
-Ask the user what they want to write about if not provided.
+Read `references/requirements-gatherer.md` for the full process.
 
-If the input is a vague idea (not full requirements), research reader intent:
-1. Try a Google search query likely to find this idea in SERP
-2. If SERP is highly related → run `serp-gap-analysis` skill
-3. If not related → try another query
-4. After 3 failed attempts → stop and report that this may not be a good content idea (no matching searches)
+**Input**: user's topic idea OR content requirements
 
-Skip SERP analysis if the input already contains these requirements:
+**Returns**:
 - SERP intent summary
 - Word count
 - Content format
 - Must-have topics
 - Competitor gaps
-
-### Required Fields (resolved from input or research)
-
-From SERP analysis:
-- SERP intent summary
-- Word count
-- Content format
-- Must-have topics
-- Competitor gaps
-
-**Important:** SERP analysis may return multiple options for some fields (e.g., word count ranges like 1. 1500-2500, 2. 2500-3500). Make sure user confirms them before proceeding to the next step.
-
-Propose these based on the above:
-- Target reader
-- Primary outcome (what the reader can do/understand after reading)
 
 ### Setup
 
