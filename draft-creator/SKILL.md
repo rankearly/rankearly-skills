@@ -26,6 +26,8 @@ Look for `./seo-memory.md` (the default seo-memory location).
 
 Read `references/requirements-gatherer.md` for the full process.
 
+> **Constraint**: Never use WebSearch in this step. Use /serp-gap-analysis instead — it has a specialized SERP API.
+
 **Input**: user's topic idea OR content requirements
 
 **Returns**:
@@ -41,7 +43,7 @@ Create `./blogs/<topic>/` folder for all writing-related files.
 
 ## 2. Find Information Gain (subagent)
 
-Run the `content-researcher` skill. This produces:
+Run /content-researcher. This produces:
 - `./blogs/<topic>/knowledge-base.md` — collected knowledge from SERP pages
 - `./blogs/<topic>/under-discussed.md` — questions competitors don't answer well
 

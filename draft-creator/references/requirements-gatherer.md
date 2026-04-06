@@ -29,16 +29,16 @@ If any missing → continue to Step 2.
 
 ### Step 2: Test queries and find related SERP
 
+> ⚠️ **NEVER use WebSearch tool.** /serp-gap-analysis contains a specialized SERP API that returns real Google results. WebSearch would give you generic web results, not the SERP data you need.
+
 The topic idea may not directly match search intent. Test queries:
 
 1. Form a Google search query from the topic idea
-2. Run `serp-gap-analysis` with that query
+2. Run /serp-gap-analysis with that query
 3. Check if SERP results are highly related to the topic
    - If related → use this query, extract requirements from serp-gap-analysis output
    - If not related → try a different query formulation
 4. After 3 failed attempts → stop and report: "This may not be a good content idea (no matching searches)"
-
-Do NOT use WebSearch — serp-gap-analysis uses a special SERP API.
 
 ### Step 3: Return and confirm
 
