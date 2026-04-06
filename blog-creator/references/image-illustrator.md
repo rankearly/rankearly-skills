@@ -14,9 +14,11 @@ Generate illustration image prompts for sections of a finished blog post.
 
 3. For each selected point, run /blog-image in Illustration mode. Pass a focused description of the specific concept to illustrate.
 
-4. Insert the generated prompt as a code block at the end of the corresponding section in the blog file:
+4. Insert the generated prompt and an image placeholder into the blog file at the end of the corresponding section:
 
 ```
+![descriptive alt text](images/filename.jpg)
+
 <!-- blog-image
 [paste the generated image-gen prompt here]
 -->
