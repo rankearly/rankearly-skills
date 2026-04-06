@@ -36,20 +36,10 @@ Both files live in the project's current working directory by default. If the us
 
 ## Step 2. Read and extract (subagent per source)
 
-For each selected page, spawn a subagent with the **topic**, a **ref ID** (sequential: [1], [2], ...), and the current knowledge base. Read `./references/guide-reader.md` for the subagent prompt. Each subagent reads the page and returns extracted knowledge entries plus discovered questions.
+For each selected page, spawn a subagent with the **topic**, a **source ID** (sequential: [1], [2], ...), and the current knowledge base. Read `./references/guide-reader.md` for the subagent prompt. Each subagent reads the page and returns extracted knowledge entries plus discovered questions.
 
 After each page is processed, merge its output into the two shared files.
 
 ## Step 3. Answer remaining questions (subagent per question)
 
 Once all sources have been processed, review `under-discussed.md`. For each unanswered question, spawn a subagent. Read `./references/question-researcher.md` for the subagent prompt.
-
-Append each answer directly below its question in `under-discussed.md`:
-
-```
-## {question}
-
-{answer}
-
-Sources: {urls}
-```
