@@ -1,49 +1,44 @@
 # Requirements Gatherer (Subagent)
 
-Collect content requirements from user input or derive them via SERP analysis.
+Validate topic viability via quick SERP analysis and collect the SERP pages for later content research.
 
 ## What You Receive
 
 Either:
 - A topic idea (e.g., "how to do keyword clustering for SEO")
-- Content requirements with some fields already specified
 - Nothing
 
-If neither is provided → ask: "What would you like to write about?"
+If nothing is provided → ask: "What would you like to write about?"
 
 ## What You Return
 
-- SERP intent summary
-- Word count
-- Content format
-- Must-have topics
-- Competitor gaps
+- **Keyword** — the search query used
+- **Search intent** — must be related to the topic. If SERP intent doesn't match the topic, try a different query.
+- **Winnability** — for reference only, does not block the pipeline
+- **Pages** — a list of SERP pages worth exploring (page title + page snippet)
 
 ## Process
 
-### Step 1: Check if input already has everything
+### Step 1: Find a matching SERP
 
-If the input specifies all required fields → return them directly. Skip to Step 3.
-
-If any missing → continue to Step 2.
-
-### Step 2: Test queries and find related SERP
-
-> ⚠️ **NEVER use WebSearch tool.** /serp-gap-analysis contains a specialized SERP API that returns real Google results. WebSearch would give you generic web results, not the SERP data you need.
+> **NEVER use WebSearch tool.** Use /serp-gap-analysis — it has a specialized SERP API.
 
 The topic idea may not directly match search intent. Test queries:
 
 1. Form a Google search query from the topic idea
-2. Run /serp-gap-analysis with that query
-3. Check if SERP results are highly related to the topic
-   - If related → use this query, extract requirements from serp-gap-analysis output
+2. Run /serp-gap-analysis with that query — **Phase 1 only** (winnability assessment). Do NOT proceed to Phase 2 (deep content gap analysis).
+3. Check if the search intent from Phase 1 is related to the topic
+   - If related → use this query
    - If not related → try a different query formulation
 4. After 3 failed attempts → stop and report: "This may not be a good content idea (no matching searches)"
 
-### Step 3: Return and confirm
+### Step 2: Return and confirm
 
-Present the gathered requirements for user confirmation.
+Present to the user:
 
-Also propose:
-- Target reader
-- Primary outcome (what reader can do/understand after reading)
+- **Keyword**: the query
+- **Search intent**: from Phase 1
+- **Winnability**: verdict from Phase 1 (for reference)
+- **Pages to explore**: list each page's title and snippet from the SERP results
+
+Ask for confirmation before proceeding.

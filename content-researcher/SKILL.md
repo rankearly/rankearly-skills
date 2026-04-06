@@ -1,12 +1,11 @@
 ---
 name: content-researcher
-description: Use when the user wants to research a topic before writing SEO content — ultimate guides, how-to articles, comparisons, listicles, tutorials, or pillar pages. Triggers on phrases like "research X for me", "what do top articles on X cover", "find content gaps about X", "survey existing content on X", or any request to read and analyze what's already ranking for a topic. Also use when the user wants to build a knowledge base from competing content or find under-discussed angles before writing.
+description: Collect what high-ranking content covers about a topic, surface under-discussed subjects, and discover information gains (unique takes). Use when the user wants to research before writing — "research X for me", "find information gains for X", "find content gaps about X", "what are competitors missing about X", or any request to analyze what's already ranking.
 metadata:
   displayName: Content Researcher
   status: live
   phases:
-    - name: Expand topic into search queries
-    - name: Search and filter sources
+    - name: Find sources
     - name: Read and extract knowledge
     - name: Answer under-discussed questions
 ---
@@ -17,8 +16,10 @@ Research a topic by reading the best-ranking content on the web, distilling it i
 
 ## Inputs
 
-- **Topic** — the subject to research (e.g. "email deliverability", "React performance optimization")
-- **Content type** (optional) — what the user plans to write: ultimate guide, how-to, comparison, listicle, tutorial, etc. Defaults to "comprehensive guide" if not specified. This shapes the search queries and what counts as a good source.
+Provide **one** of the following:
+
+- **Topic** — the subject to research (e.g. "email deliverability", "React performance optimization"). Optionally include **content type** (ultimate guide, how-to, comparison, listicle, tutorial, etc. — defaults to "comprehensive guide").
+- **SERP** — a keyword and a list of pages (title + snippet) from a prior SERP analysis. When provided, the source search is skipped entirely.
 
 ## Output files
 
@@ -27,44 +28,19 @@ Both files live in the project's current working directory by default. If the us
 - `knowledge-base.md` — the knowledge base (~30 entries, each with a depth label)
 - `under-discussed.md` — questions not well covered by existing content, with researched answers
 
-## Step 1. Expand the topic into search queries
+## Step 1. Find sources
 
-Take the user's topic and content type, then generate five search queries. Each query targets a different angle or entity related to the topic — this ensures you don't just find the same article five times. Tailor the query suffixes to the content type.
+**If SERP was provided** — use the SERP pages as your source list. Skip to Step 2.
 
-**Example** for topic "technical SEO" (ultimate guide):
-- `technical SEO ultimate guide`
-- `site architecture SEO complete guide`
-- `core web vitals optimization guide`
-- `crawl budget management comprehensive guide`
-- `structured data markup complete tutorial`
+**If topic was provided** — read `./references/search-and-filter.md` for the full search-and-filter process. This produces a list of 5-8 source pages.
 
-**Example** for topic "React vs Vue" (comparison):
-- `React vs Vue 2025 comparison`
-- `React vs Vue performance benchmark`
-- `React vs Vue developer experience comparison`
-- `migrating from Vue to React pros cons`
-- `React vs Vue for enterprise applications`
+## Step 2. Read and extract (subagent per source)
 
-**Example** for topic "setting up ESLint" (how-to):
-- `how to set up ESLint from scratch`
-- `ESLint configuration best practices`
-- `ESLint flat config migration guide`
-- `ESLint with TypeScript complete setup`
-- `ESLint rules recommended setup tutorial`
+For each selected page, spawn a subagent with the **topic**, a **ref ID** (sequential: [1], [2], ...), and the current knowledge base. Read `./references/guide-reader.md` for the subagent prompt. Each subagent reads the page and returns extracted knowledge entries plus discovered questions.
 
-## Step 2. Search and filter
+After each page is processed, merge its output into the two shared files.
 
-Web-search each query. From the combined results, select the top 5-8 pages that are **directly about the topic** and genuinely substantive (structured with headings, covering the topic in depth). Skip:
-- Thin pages — they won't contribute meaningful knowledge
-- Tangentially related pages — even if high-quality, they don't serve the reader's intent
-
-## Step 3. Read and extract (subagent per source)
-
-For each selected source, spawn a subagent with the **topic**, a **ref ID** (sequential: [1], [2], ...), and the current knowledge base. Read `./references/guide-reader.md` for the subagent prompt. Each subagent reads the source and returns extracted knowledge entries plus discovered questions.
-
-After each source is processed, merge its output into the two shared files.
-
-## Step 4. Answer remaining questions (subagent per question)
+## Step 3. Answer remaining questions (subagent per question)
 
 Once all sources have been processed, review `under-discussed.md`. For each unanswered question, spawn a subagent. Read `./references/question-researcher.md` for the subagent prompt.
 

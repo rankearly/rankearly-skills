@@ -15,27 +15,21 @@ Create a content draft from a topic idea or content requirements.
 
 ## 0. Load Project Context
 
-Look for `./seo-memory.md` (the default seo-memory location).
-
-- **File exists and readable** — load it. Use this context throughout the draft to keep product references, terminology, and positioning accurate.
-- **File doesn't exist or inaccessible** — ask the user: "I don't see a project memory file (`seo-memory.md`). Would you like to run `/seo-memory` first to capture your project context? This helps me weave accurate product references into the blog. If not, I'll skip this step."
-  - If yes — run the `seo-memory` skill, then continue.
-  - If no — proceed without project context.
+Run /seo-memory. It handles checking for an existing file, creating one if needed, or skipping.
 
 ## 1. Gather Requirements (subagent)
 
 Read `references/requirements-gatherer.md` for the full process.
 
-> **Constraint**: Never use WebSearch in this step. Use /serp-gap-analysis instead — it has a specialized SERP API.
+> **Constraint**: Never use WebSearch in this step. Use /serp-gap-analysis Phase 1 only — it has a specialized SERP API.
 
 **Input**: user's topic idea OR content requirements
 
 **Returns**:
-- SERP intent summary
-- Word count
-- Content format
-- Must-have topics
-- Competitor gaps
+- Keyword
+- Search intent (must be related to the topic)
+- Winnability (for reference)
+- Pages to explore (title + snippet from SERP)
 
 ### Setup
 
@@ -43,7 +37,7 @@ Create `./blogs/<topic>/` folder for all writing-related files.
 
 ## 2. Find Information Gain (subagent)
 
-Run /content-researcher. This produces:
+Run /content-researcher, passing the SERP from Step 1 (keyword + pages list) so it skips its own search steps and goes straight to reading. This produces:
 - `./blogs/<topic>/knowledge-base.md` — collected knowledge from SERP pages
 - `./blogs/<topic>/under-discussed.md` — questions competitors don't answer well
 
