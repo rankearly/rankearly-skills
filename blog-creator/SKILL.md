@@ -1,17 +1,25 @@
 ---
-name: draft-creator
-description: Create SEO content drafts from topic ideas or requirements. Use when the user wants to write a blog post, article, or guide and needs help with research, outlining, and structure. Triggers on "create a draft", "write a blog post", "help me outline", "content brief", or when the user provides a topic idea they want to develop into full content.
+name: blog-creator
+description: Create SEO blog posts from topic ideas — handles research, outlining, and full writing. Use when the user wants to write a blog post, article, or guide from scratch, or when they have an existing outline and want to turn it into a full blog. Triggers on "create a blog", "write a blog post", "help me outline", "content brief", "write from this outline", or when the user provides a topic idea they want to develop into published content.
 metadata:
-  displayName: Draft Creator
+  displayName: Blog Creator
   status: live
   phases:
     - name: Gather requirements
     - name: Find information gain
     - name: Select conversion hooks
     - name: Create outline
+    - name: Write blog
 ---
 
-Create a content draft from a topic idea or content requirements.
+Create an SEO blog post from a topic idea, content requirements, or an existing outline.
+
+## Intent Routing
+
+Check what the user is asking for:
+
+- **"Write a blog from this outline"** or an outline file is provided → skip to **Step 5**.
+- **Everything else** (topic idea, keyword, "write a blog about X") → start from **Step 0**.
 
 ## 0. Load Project Context
 
@@ -58,29 +66,21 @@ If seo-memory was not loaded, skip this step.
 
 ## 4. Create Outline (subagent)
 
-Use this structure, adapting to content format and word count:
+Read `references/outline-creator.md` for the full process.
 
-1. **Hook** — grab attention, establish relevance
-2. **Problem** — what's at stake, why it matters
-3. **Why existing advice is incomplete** — set up your unique angle
-4. **Your framework/method** — the core value
-5. **Examples/applications** — make it concrete
-6. **Mistakes/caveats** — build trust, add depth
-7. **Conclusion/next step** — actionable takeaway
+The outline is saved to `./blogs/<topic>/outline.md`.
 
-### Adapt Based On
+### User Review
 
-- **Word count** — expand or compress sections accordingly
-- **Must-have topics** — verify knowledge base has content to cover each
-- **Under-discussed questions** — integrate 2-3 as your information gain
-- **Conversion hooks** — place them where they serve the reader (e.g., a product capability as a concrete example in the framework section, a free tier mention in the next-step conclusion). Mark these placements in the outline with `[hook: ...]`.
+Present the outline to the user and wait for feedback before proceeding. The user may want to:
+- Reorder, add, or remove sections
+- Adjust the angle or emphasis
+- Change the target word count
 
-### Output Format
+Apply any requested changes to the outline file, then proceed.
 
-```
-## {H2 Title}
-{1-2 sentence description of what this section covers}
-({word count} words)
-```
+## 5. Write Blog (subagent)
 
-Repeat for each section. Total word counts should match the target.
+Read `references/blog-writer.md` for the full process.
+
+The blog is saved to `./blogs/<topic>/blog.md`.

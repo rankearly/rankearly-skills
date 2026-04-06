@@ -59,4 +59,4 @@ Read `references/content-gap-process.md` for the async workflow and analysis app
 
 **Output**: use template from `templates/phase-2-content-gap.md`.
 
-After presenting Phase 2, ask whether the user wants to continue to create a draft. If yes, hand off to the `draft-creator` skill with the content requirements gathered in this phase. The draft-creator skill will handle information gain research and outline creation.
+After presenting Phase 2, ask whether the user wants to continue to create a blog post. If yes, hand off to the `blog-creator` skill with the content requirements gathered in this phase. The blog-creator skill will handle information gain research, outline creation, and full blog writing.
