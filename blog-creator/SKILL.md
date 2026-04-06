@@ -84,3 +84,7 @@ Apply any requested changes to the outline file, then proceed.
 Read `references/blog-writer.md` for the full process.
 
 The blog is saved to `./blogs/<topic>/blog.md`.
+
+## 6. Create Illustration Images (subagent)
+
+Read `references/image-illustrator.md` for the full process.
