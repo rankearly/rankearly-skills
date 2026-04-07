@@ -23,6 +23,15 @@ Use this as a starting skeleton — adapt sections to the content format and top
 
 Not every article needs all seven. A tutorial might skip "why existing advice is incomplete." A comparison post might merge framework + examples. Use judgment.
 
+## Storytelling Flow
+
+Think hard about the order. The outline should read as a narrative, not a list of loosely related tips.
+
+- **Adjacent sections must connect.** Each section should set up or follow from the one before it. If two sections feel unrelated sitting next to each other, something is wrong — reorder, merge, or cut.
+- **Match section weight to insight depth.** If a point has real substance and changes how the reader thinks, give it space. If a point is thin — a single insight without much to unpack — keep it brief or fold it into a parent section. Do not create a wordy h2 for a thin point.
+- **Some h2s are standalone, some need h3s.** A section with one clear idea needs no sub-sections. A section covering multiple related decisions benefits from h3s. Let the content decide the structure.
+- **Cut what isn't worth explaining.** Not every insight from the research deserves a section. If it's trivia, tangential, or only interesting as a footnote, leave it out. A tighter article with fewer strong sections beats a comprehensive one full of filler.
+
 ## Adapt Based On
 
 - **Word count** — expand or compress sections accordingly
@@ -44,10 +53,16 @@ Target: ~{N} words
 (~{word count} words)
 
 ## {H2 Title}
-{1-2 sentence description of what this section covers and the key point it makes}
+{1-2 sentence description of the overall section}
 (~{word count} words)
+
+### {H3 Title (optional)}
+{1-2 sentence description of this sub-point}
+
+### {H3 Title (optional)}
+{1-2 sentence description of this sub-point}
 
 ...
 ```
 
-Repeat for each section. Section word counts should roughly add up to the target.
+Some h2s stand alone with no h3s. Others have multiple h3s — use h3s when the section covers several distinct perspectives, steps or sub-concepts that benefit from separation. Section word counts should roughly add up to the target.
