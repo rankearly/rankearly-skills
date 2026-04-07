@@ -1,6 +1,6 @@
 ---
 name: blog-creator
-description: Create SEO blog posts from topic ideas — handles research, outlining, and full writing. Use when the user wants to write a blog post, article, or guide from scratch, or when they have an existing outline and want to turn it into a full blog. Triggers on "create a blog", "write a blog post", "help me outline", "content brief", "write from this outline", or when the user provides a topic idea they want to develop into published content.
+description: Create or rewrite SEO blog posts — handles research, outlining, and full writing. Use when the user wants to write a blog post from scratch, rewrite a thin draft, or turn an existing outline into a full blog. Triggers on "create a blog", "write a blog post", "rewrite this blog", "this draft is too thin", "help me outline", "write from this outline", or when the user provides a topic idea they want to develop into published content.
 metadata:
   displayName: Blog Creator
   status: live
@@ -19,7 +19,14 @@ Create an SEO blog post from a topic idea, content requirements, or an existing 
 Check what the user is asking for:
 
 - **"Write a blog from this outline"** or an outline file is provided → skip to **Step 5**.
+- **"Rewrite"**, **"improve"**, or **"too thin"** with an existing blog file → **Rewrite flow** (see below).
 - **Everything else** (topic idea, keyword, "write a blog about X") → start from **Step 0**.
+
+### Rewrite flow
+
+The user has a draft they're unhappy with and wants a stronger version. Read the existing blog to extract its topic, then re-run the full pipeline (Steps 0-6) using that topic. The existing blog's `blogs/<topic>/` folder is reused — research, outline, and the blog file are overwritten.
+
+During Step 4 (outline), present the new outline alongside notes on what changed from the original draft so the user can steer the rewrite before the full blog is written.
 
 ## 0. Load Project Context
 
