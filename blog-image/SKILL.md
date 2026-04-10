@@ -7,6 +7,7 @@ metadata:
   phases:
     - name: Determine mode
     - name: Generate prompt
+    - name: Review prompt
 ---
 
 Generate **one optimized Nanobanana Pro prompt** for a blog image.
@@ -50,3 +51,11 @@ Use this structure:
 ````
 
 Keep the prose tight. Every sentence should either describe something the generator needs to draw or a style rule it needs to follow.
+
+## Step 4: Review and tighten
+
+Before returning the prompt, check it once:
+
+- Remove repeated facts or labels.
+- Labels should name entities of the diagram, not effects.
+- Return only the cleaned-up prompt.
