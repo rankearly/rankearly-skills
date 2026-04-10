@@ -48,6 +48,8 @@ If the user supplies a blog title for a cover, treat it as a **titled cover** (t
   - No nested diagram containers unless the user explicitly asks for panels
 - **Emphasis rules:** If one element needs emphasis, use color or fill — not size jumps, shadows, glows, or extra decoration. Stay restrained, not fancy.
 - **Labeling:** Use exact text labels inside the diagram whenever the meaning depends on the label. When writing the prompt, always specify: the row/column structure, the exact labels, which elements connect to which, which items are grouped, and which items are visually distinct and why.
+- **Examples must be factually faithful to the concept being illustrated.** Before finalizing the prompt, ask: "If this diagram were real, would these specific examples actually behave this way?" Wrong examples teach the wrong mental model and undermine the diagram. If you don't know the domain well enough to pick accurate examples, ask the user.
+- **Keep captions minimal.** Small labels that name a zone or mark a key transition are fine. What to avoid is verbose explanation — captions that restate the rule, describe what's happening, or narrate the diagram. Let the visual structure carry most of the meaning; captions should label, not explain.
 
 ## Step 3: Write the prompt
 
