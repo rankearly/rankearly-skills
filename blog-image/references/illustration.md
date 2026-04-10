@@ -65,3 +65,21 @@ Style:
 - Use tinted containers and subtle elevation to create hierarchy instead of heavy outlines or bright fills.
 - No icons, no busy annotations, no gradients used as decoration, no dark background blocks, no clutter.
 ````
+
+## Example
+
+**User:** "Generate the image prompt for the step 'Organize clusters into topics': RankEarly uses an NLP algorithm to group related keyword clusters into broader topics. This step is conservative by design: it prefers leaving weak matches separate instead of forcing them into the same topic."
+
+For this request, we will include the following requirements in the prompt:
+
+- Keep the same airy editorial vector style as the first example: pure white background, crisp lines, soft shadows, balanced padding, restrained but clearly visible blue and teal accents.
+- Match the first example's color strength rather than a washed-out pastel look. The fills should be light but present, and the header pills, connector lines, and center glyph should read with stronger contrast.
+- Use a three-column structure with headings: keyword clusters on the left, one shared NLP grouping panel in the center, and grouped topics on the right.
+- Show five keyword cluster inputs on the left with these exact labels: `welcome email sequence`, `welcome email templates`, `abandoned cart email`, `email subject line formulas`, `newsletter subject line tips`.
+- Make the center column a single transformation engine, not repeated mini-cards and not semantic verdict labels. It should have one rounded panel, one small network glyph, and clean incoming/outgoing lines.
+- On the right, show two grouped topic containers. Each topic should be represented by one lead keyword cluster as the colored header pill, not by an abstract category name.
+- Use these exact topic groupings:
+  - Topic 1 led by `welcome email sequence`, containing `welcome email templates` and `abandoned cart email`
+  - Topic 2 led by `email subject line formulas`, containing `newsletter subject line tips`
+- Make the flow easy to read left to right, with clean curved connectors that converge into the center and fan back out without crossings.
+- Keep the topic containers calm and polished, using tint and enclosure instead of icons, heavy chrome, busy annotations, or decorative gradients.
