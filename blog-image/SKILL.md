@@ -9,43 +9,49 @@ metadata:
     - name: Generate prompt
 ---
 
-Generate **one optimized Nanobanana Pro prompt** for a blog image based on the user's request.
+Generate **one optimized Nanobanana Pro prompt** for a blog image.
 
-## Step 1: Determine Mode
+## Step 1: Pick the mode
 
-| Mode | When to use | Focus |
-|------|-------------|-------|
-| **Cover** | Header image, hero image, "cover", "thumbnail", scroll-stopper | Visual impact, abstract, attention-grabbing |
-| **Illustration** | In-post diagram, workflow comparison, "explain", "show", concept visualization | Clarity, literal representation, educational |
+| Mode | Use when the user wants... | Goal |
+|------|---------------------------|------|
+| **Cover** | A header, hero, thumbnail, or scroll-stopper | Visual impact — abstract and attention-grabbing |
+| **Illustration** | An in-post diagram, workflow, comparison, or concept explainer | Clarity — literal and educational |
 
-## Step 2: Mode-Specific Settings
+If the user supplies a blog title for a cover, treat it as a **titled cover** (title becomes the focal point).
 
-### Cover
-- **Background:** Dark navy/charcoal with subtle vignette
+## Step 2: Apply the mode spec
+
+### Cover spec
+
 - **Aspect:** 3:2
-- **Style:** Premium SaaS / editorial tech poster, abstract visual impact
-- **Rules:** No logos, no watermarks. If no title requested: no text, no letters/numbers.
-- **Title overlay (optional):** When user provides a blog title, incorporate it into the composition:
-  - Place title text dead center, occupying roughly 50% of the image height — dominant and unmissable
-  - Use bold, clean sans-serif typography (Inter, SF Pro style)
-  - White or near-white text with subtle shadow/glow for readability
-  - Abstract elements stay minimal and behind the title, never competing with it
+- **Background:** Dark navy/charcoal with subtle vignette
+- **Style:** Premium SaaS / editorial tech poster, abstract, high-end lighting
 - **Palette:**
   - Primary: Trusty Blue `#2563EB`
   - Accent: warm orange `#F97316`
   - Neutrals: slate/steel grays, deep navy/charcoal
+- **Rules:** No logos, no watermarks. If no title is provided, include no text at all.
+- **Titled covers:** Place the title text dead center, roughly 50% of image height, in bold clean sans-serif (Inter / SF Pro style), white with a subtle glow or shadow for readability. Abstract elements sit behind the title and never compete with it.
 
-### Illustration
-- **Background:** White or very light neutral (`#FAFAFA` or `#F8F9FA`)
-- **Aspect:** 3:2 (or as needed)
-- **Style:** Modern SaaS, precision vector, Think Linear/Notion/Vercel. Rendered at high detail with crisp anti-aliased edges.
-- **Rules:** Clear visual hierarchy, can include diagrams/flowcharts. Each image focuses on one specific concept — no multi-topic compositions. Use precise geometric shapes with consistent stroke weights (2px). Limit to 3–4 colors per image for clarity.
-- **Palette:** Brand colors for emphasis, neutral grays for structure. Avoid gradients unless they convey meaning (e.g., progression).
-- **Quality directives:** Sharp vector edges, no blur or soft-focus effects, legible labels at 1x resolution, generous whitespace between elements.
+### Illustration spec
 
-## Step 3: Generate Prompt
+- **Aspect:** 3:2 (unless the concept needs otherwise)
+- **Background:** Pure white
+- **Style:** Clean documentation diagram — precision vector, polished SaaS aesthetic, crisp anti-aliased edges, sharp vector lines, no blur or soft focus
+- **Palette:** White background. Use only as many colors as the diagram needs; keep them harmonious. Avoid decorative gradients.
+- **Composition rules:**
+  - Center the canvas and center major element groups
+  - Few elements, few connection lines, no tangled paths
+  - One consistent UI language across pills, cards, arrows, and containers
+  - Generous whitespace, balanced alignment, consistent stroke weights
+  - No nested diagram containers unless the user explicitly asks for panels
+- **Emphasis rules:** If one element needs emphasis, use color or fill — not size jumps, shadows, glows, or extra decoration. Stay restrained, not fancy.
+- **Labeling:** Use exact text labels inside the diagram whenever the meaning depends on the label. When writing the prompt, always specify: the row/column structure, the exact labels, which elements connect to which, which items are grouped, and which items are visually distinct and why.
 
-Use this structure for all modes:
+## Step 3: Write the prompt
+
+Use this structure:
 
 ```
 **Mode:** [Cover / Illustration]
@@ -54,89 +60,70 @@ Use this structure for all modes:
 
 ---
 
-> [ASPECT RATIO] [TYPE], [STYLE DESCRIPTORS]. [BACKGROUND DESCRIPTION].
+> [ASPECT] [TYPE], [STYLE DESCRIPTORS]. [BACKGROUND].
 >
-> [LAYOUT - describe the visual structure]
+> [LAYOUT — structure, placement, spacing]
 >
-> [ELEMENT A - detailed description with colors, positioning, visual cues]
+> [ELEMENTS — each with color, position, label, visual cue]
 >
-> [ELEMENT B - detailed description with colors, positioning, visual cues]
+> [RELATIONSHIPS — what connects, groups, or contrasts]
 >
-> [ADDITIONAL ELEMENTS if needed]
->
-> [STYLE NOTES specific to this mode]
->
-> [KEY VISUAL CONTRASTS OR HIERARCHY TO EMPHASIZE]
-
-**Params:**
-- Aspect ratio: [ratio]
-- Style: [style notes]
-- Quality: high detail, sharp vector edges, crisp anti-aliased lines
+> [STYLE NOTES from the mode spec above]
 ```
+
+Keep the prose tight. Every sentence should either describe something the generator needs to draw or a style rule it needs to follow.
 
 ## Examples
 
-### Cover Example (no title)
+### Cover — no title
 
 **User:** "Generate a blog cover for my post about keyword clustering"
 
 **Mode:** Cover
-
 **Focus:** Abstract visual suggesting grouping/organization, scroll-stopping
 
 ---
 
-> 3:2 blog cover, ultra-clean premium SaaS aesthetic. Dark navy/charcoal background with subtle vignette. A single large glowing portal ring off-center, with layered concentric arcs and light streaks swirling into the ring — suggesting aggregation and clustering. Strong contrast: Trusty Blue #2563EB as primary glow, warm orange #F97316 as accent highlights, with slate/steel grays for structure. Tasteful soft bloom, faint film grain, tiny bokeh particles, crisp edges, minimal clutter, modern tech poster style, high-end lighting, no text, no logos.
+> 3:2 blog cover, ultra-clean premium SaaS aesthetic. Dark navy/charcoal background with subtle vignette. A single large glowing portal ring off-center, with layered concentric arcs and light streaks swirling into the ring — suggesting aggregation and clustering. Strong contrast: Trusty Blue #2563EB as primary glow, warm orange #F97316 as accent highlights, with slate/steel grays for structure. Tasteful soft bloom, faint film grain, tiny bokeh particles, crisp edges, minimal clutter, modern tech poster style, high-end lighting. No text, no letters or numbers, no logos, no watermarks.
 
-### Cover Example (with title)
+### Cover — with title
 
 **User:** "Generate a blog cover for my post about keyword clustering, title: 'Keyword Clustering: The Complete Guide'"
 
 **Mode:** Cover (titled)
-
 **Focus:** Abstract clustering visual with prominent title text overlay
 
 ---
 
-> 3:2 blog cover, ultra-clean premium SaaS aesthetic. Dark navy/charcoal background with subtle vignette. The text "Keyword Clustering: The Complete Guide" displayed dead center in bold white sans-serif typeface with a subtle blue glow shadow. Layered concentric arcs and light streaks swirling into a glowing ring around and behind the title — suggesting aggregation and clustering. Strong contrast: Trusty Blue #2563EB as primary glow, warm orange #F97316 as accent highlights, with slate/steel grays for structure. The typography is crisp and readable, abstract elements frame the text without competing. Tasteful soft bloom, faint film grain, modern tech poster style, high-end lighting.
+> 3:2 blog cover, ultra-clean premium SaaS aesthetic. Dark navy/charcoal background with subtle vignette. The text "Keyword Clustering: The Complete Guide" displayed dead center in bold white sans-serif typeface (Inter / SF Pro style) with a subtle blue glow shadow, occupying roughly half the image height. Layered concentric arcs and light streaks swirl into a glowing ring around and behind the title — suggesting aggregation and clustering. Strong contrast: Trusty Blue #2563EB as primary glow, warm orange #F97316 as accent highlights, with slate/steel grays for structure. Typography is crisp and readable; abstract elements sit behind the title and never compete with it. Tasteful soft bloom, faint film grain, modern tech poster style, high-end lighting. No logos, no watermarks.
 
-**Params:**
-- Aspect ratio: 3:2
-- Style: Premium SaaS, dark theme, abstract
-- Quality: high detail, sharp edges
-
-### Illustration Example
+### Illustration
 
 **User:** "Create an illustration showing top-down vs bottom-up content strategy workflows"
 
 **Mode:** Illustration
-
 **Focus:** Comparing two content strategy approaches with directional contrast
 
 ---
 
-> 3:2 infographic, modern SaaS illustration style, clean vector aesthetic. White background.
+> 3:2 infographic, modern SaaS documentation illustration, clean vector aesthetic. Pure white background.
 >
-> **LEFT COLUMN - "Traditional Manual Approach" (Top-Down):**
-> - Frustrated marketer at top with lightbulb, manually guessing pillar topics
-> - Arrows pointing DOWN to pre-defined content pillar boxes
-> - Below that, more arrows DOWN to keyword lists forced into pillars
-> - Bottom: disconnected content pieces mismatching search intent
-> - Muted gray-ish blue tones, visual friction cues (question marks, crossed-out items)
+> **LEFT COLUMN — "Traditional Manual Approach" (Top-Down):**
+> - One centered vertical flow
+> - Marketer at top, then guessed topic boxes, then forced keyword lists, then mismatched content pieces
+> - Straight downward arrows only
+> - Muted gray-blue tones
 > - Label: "Start with assumptions, force keywords into pillars"
 >
-> **RIGHT COLUMN - "Data-Driven Workflow" (Bottom-Up):**
-> - Clean interface at BOTTOM with raw keyword data flowing IN
-> - Arrows pointing UP as SERP data groups keywords into clusters
-> - Clusters merge and consolidate into revealed pillar topics
-> - Top: confident marketer with clear, validated content strategy
-> - Vibrant teal/green accents, clarity cues (checkmarks, connected nodes)
+> **RIGHT COLUMN — "Data-Driven Workflow" (Bottom-Up):**
+> - One centered vertical flow
+> - Raw keyword data at bottom, then grouped clusters, then revealed topics, then confident marketer at top
+> - Straight upward arrows only
+> - Teal accents for grouped data
 > - Label: "Start with data, let pillars emerge from search reality"
 >
-> **Key contrasts:** Direction (down vs up), Emotion (frustration vs confidence), Outcome (mismatch vs alignment)
-
-**Params:**
-- Aspect ratio: 3:2
-- Style: Modern SaaS, precision vector, minimal gradients
-- Quality: high detail, sharp vector edges, crisp anti-aliased lines, legible labels
-
+> **Relationships:** Both columns are structurally mirrored for easy comparison. Text labels sit inside the diagram. Emphasis is carried only by color fill on the grouped clusters and final topics — no size jumps, shadows, or glows. No decorative elements, background panels, nested containers, or tangled arrows.
+>
+> **Style:** Pure white background, centered composition, polished documentation style, consistent shapes and stroke weights, generous whitespace, balanced spacing, restrained harmonious colors, no gradients, sharp vector edges, crisp anti-aliased lines, legible labels.
+>
+> **Key contrasts:** Direction (down vs up), Outcome (mismatch vs alignment).

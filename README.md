@@ -8,7 +8,7 @@ Works with any AI assistant that supports skills — Claude Code, Gemini CLI, Op
 
 | Skill | What it does | Status |
 |-------|-------------|--------|
-| [Topic Research](./topic-research/SKILL.md) | Build a pillar-cluster content architecture from your product's features using keyword expansion and clustering | Live |
+| [Topic Research](./topic-research/SKILL.md) | Build a topic-cluster content architecture from your product's features using keyword expansion and clustering | Live |
 | [SERP Gap Analysis](./serp-gap-analysis/SKILL.md) | Assess whether a SERP is winnable and surface content opportunities from competitor weaknesses | Live |
 | [Blog Title Generator](./blog-title-generator/SKILL.md) | Generate 10 scored blog title variations (title tag + H1) for a target keyword | Live |
 

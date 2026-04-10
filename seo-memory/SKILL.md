@@ -10,22 +10,22 @@ metadata:
     - name: Confirm and summarize
 ---
 
-Track project knowledge so every content skill has accurate, up-to-date context about the user's product, service, or business.
+Track project knowledge so content skills have accurate product and audience context.
 
 ## 1. Locate the memory file
 
-Check for an existing memory file at the default path: `./seo-memory.md` (relative to the project root or current working directory).
+Check for an existing memory file at `./seo-memory.md`.
 
 - **File exists** — read it and proceed to step 2.
 - **File doesn't exist / no access** — ask the user where they'd like to store it. If they have no preference, create it at the default path.
 
-For a brand-new file, initialize it with the template in `references/template.md`. Walk the user through each section — ask questions to fill it in rather than leaving empty sections. You don't need to complete every section in one sitting; capture what the user provides and leave the rest for later.
+For a brand-new file, initialize it with the template in `references/template.md`. Fill sections from what the user provides. If details are missing, leave them for later instead of inventing them.
 
 ## 2. Capture the update
 
-Parse what the user shared and determine which section it belongs to.
+Parse what the user shared and place it in the right section.
 
-See the template for section definitions and entry formats. The key principle: every offering entry must connect features to **customer benefits**. SEO content is written around what the customer gains, not what the product does internally. When the user describes a feature, always ask or infer: "What does this let the customer do or avoid?"
+See the template for section definitions and entry formats. For offerings, connect each capability to a clear customer benefit. Prefer customer-facing language over internal implementation details.
 
 **Deduplication rules:**
 - If an existing entry covers the same topic, update it in place — don't create a duplicate.
@@ -33,7 +33,7 @@ See the template for section definitions and entry formats. The key principle: e
 
 ## 3. Confirm and summarize
 
-After writing, show the user a short summary of what was added or changed:
+After writing, show a short summary of what changed:
 
 ```
 Updated seo-memory.md:
@@ -43,4 +43,4 @@ Updated seo-memory.md:
 
 ## Handling bulk context
 
-If the user dumps a large amount of context at once (e.g., "here's our whole product"), break it into entries across the appropriate sections. Prioritize facts that would actually appear in or influence blog content — skip internal implementation details that readers wouldn't care about.
+If the user shares a lot of context at once, break it into the right sections. Keep facts that affect SEO content. Skip internal details that do not matter to readers.

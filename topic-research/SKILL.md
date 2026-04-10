@@ -1,6 +1,6 @@
 ---
 name: topic-research
-description: Expand topics into keywords or cluster a keyword library into pillars and subtopics using RankEarly. Use when the user asks for keyword expansion, topic clustering, content clusters, topic maps, keyword research, or content planning tied to a keyword library.
+description: Expand topics into keywords or cluster a keyword library into topics and keyword clusters using RankEarly. Use when the user asks for keyword expansion, topic clustering, content clusters, topic maps, keyword research, or content planning tied to a keyword library.
 allowed-tools: list_keyword_libaries create_keyword_library expand_keywords cluster_keywords get_research_status
 metadata:
   displayName: Topic Research
@@ -18,7 +18,7 @@ metadata:
 Run one of two actions on a keyword library:
 
 - `keyword expansion` - expand a user-provided topic into related keywords and save them into the selected keyword library
-- `topic clustering` - group the keywords already stored in the selected keyword library into pillars
+- `topic clustering` - group the keywords already stored in the selected keyword library into topics
 
 Never run both actions. When the request is ambiguous, ask which action to run and stop until the user answers.
 
