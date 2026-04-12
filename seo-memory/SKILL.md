@@ -5,42 +5,22 @@ metadata:
   displayName: SEO Memory
   status: live
   phases:
-    - name: Locate memory file
-    - name: Capture the update
-    - name: Confirm and summarize
+    - name: Load memory
+    - name: Determine if update is needed
 ---
 
-Track project knowledge so content skills have accurate product and audience context.
+Load project context so content skills have accurate product and audience information.
 
-## 1. Locate the memory file
+## 1. Load memory
 
-Check for an existing memory file at `./seo-memory.md`.
+Read the memory file at `./seo-memory.md`.
 
-- **File exists** — read it and proceed to step 2.
-- **File doesn't exist / no access** — ask the user where they'd like to store it. If they have no preference, create it at the default path.
+- **File exists** — read it and make the context available to downstream skills.
+- **File doesn't exist** — ask the user where it is. If they have no preference, create it from the template in `references/template.md` using what they provide. Leave missing sections for later.
 
-For a brand-new file, initialize it with the template in `references/template.md`. Fill sections from what the user provides. If details are missing, leave them for later instead of inventing them.
+## 2. If the user shared business facts, update in a background subagent
 
-## 2. Capture the update
+Only update for facts that affect what a reader would see — product changes, pricing, positioning, audience. Not implementation details.
 
-Parse what the user shared and place it in the right section.
-
-See the template for section definitions and entry formats. For offerings, connect each capability to a clear customer benefit. Prefer customer-facing language over internal implementation details.
-
-**Deduplication rules:**
-- If an existing entry covers the same topic, update it in place — don't create a duplicate.
-- We don't track changelog or history of updates. Always maintain the up-to-date information in the file.
-
-## 3. Confirm and summarize
-
-After writing, show a short summary of what changed:
-
-```
-Updated seo-memory.md:
-- [Offerings > Keyword Explorer] Added benefit: "Find low-competition keywords without manual SERP checking"
-- [Pricing] Updated free tier limit from 50 to 100 keywords
-```
-
-## Handling bulk context
-
-If the user shares a lot of context at once, break it into the right sections. Keep facts that affect SEO content. Skip internal details that do not matter to readers.
+(subagent)
+Follow `references/update-guide.md` to apply changes to `./seo-memory.md`.
