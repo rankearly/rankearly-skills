@@ -17,8 +17,10 @@ Create an SEO blog post from a keyword, a topic idea, content requirements, or a
 ## Full write flow
 
 1. Interpret a keyword that matches user input (subagent) — Ref: `references/keyword.md`. Returns: keyword + SERP analysis (title + snippet, search intent, winnability verdict)
-2. Find information gain (subagent) — Run /content-researcher with step 1 output so it skips its own search. Returns: `./blogs/<topic>/knowledge-base.md`, `./blogs/<topic>/under-discussed.md`. **Stop and ask user which under-discussed subject to write about.**
-3. Create outline (subagent) — Ref: `references/outline.md`. Returns: `./blogs/<topic>/outline.md`. **Stop. Present outline and wait for feedback.**
+2. Find information gain (subagent) — Run /content-researcher with step 1 output so it skips its own search. Result is saved into `./blogs/<topic>/knowledge-base.md`, `./blogs/<topic>/under-discussed.md`.
+   - If user clearly states what to write, continue creating the outline.
+   - Otherwise, suggest users to find an under-discussed angle from `./blogs/<topic>/under-discussed.md`. Stop here and wait for response.
+3. Create outline (subagent) — Pass step 1 output to the subagent. Ref: `references/outline.md`. Result: `./blogs/<topic>/outline.md`. **Stop. Present outline and wait for feedback.**
 4. Write blog (subagent) — Ref: `references/write.md`. Returns: `./blogs/<topic>/blog.md`
 5. Create illustration images (subagent) — Ref: `references/image.md`
 

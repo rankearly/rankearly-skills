@@ -10,36 +10,23 @@ metadata:
     - name: Answer under-discussed questions
 ---
 
-# Content Researcher
-
-Research a topic by reading the best-ranking content on the web, distilling it into a structured knowledge base, and surfacing gaps that existing content misses. The output is two files — a knowledge base and a list of under-discussed questions with answers — that together form the foundation for writing superior content.
-
 ## Inputs
 
-Provide **one** of the following:
+Accept **one** of:
+- **Topic** — the subject to research (e.g. "email deliverability"). Optionally include **content type** (ultimate guide, how-to, comparison, listicle, tutorial — defaults to "comprehensive guide").
+- **SERP** — a keyword and a list of pages (title + snippet) from a prior SERP analysis.
 
-- **Topic** — the subject to research (e.g. "email deliverability", "React performance optimization"). Optionally include **content type** (ultimate guide, how-to, comparison, listicle, tutorial, etc. — defaults to "comprehensive guide").
-- **SERP** — a keyword and a list of pages (title + snippet) from a prior SERP analysis. When provided, the source search is skipped entirely.
+## Outputs
 
-## Output files
-
-Both files live in the project's current working directory by default. If the user specifies a different location, use that instead.
-
-- `knowledge-base.md` — the knowledge base (~30 entries, each with a depth label)
+- `knowledge-base.md` — structured knowledge (~30 entries, each with a depth label)
 - `under-discussed.md` — questions not well covered by existing content, with researched answers
 
-## Step 1. Find sources
+Both go in the working directory by default, or wherever the caller specifies.
 
-**If SERP was provided** — use the SERP pages as your source list. Skip to Step 2.
+## Steps
 
-**If topic was provided** — read `./references/search-and-filter.md` for the full search-and-filter process. This produces a list of 5-8 source pages.
+1. **Find sources** (subagent) — If SERP provided, use those pages and go to step 2. Otherwise, follow `references/search-and-filter.md` to get 5-8 source pages.
+2. **Read and extract** (subagent per source) — For each page, spawn a subagent with the topic, a source ID ([1], [2], ...), and the current knowledge base. Follow `references/guide-reader.md`. Merge each subagent's output into the two shared files.
+3. **Answer remaining questions** (subagent per question) — Review `under-discussed.md` for unanswered questions. For each, spawn a subagent following `references/question-researcher.md`.
 
-## Step 2. Read and extract (subagent per source)
-
-For each selected page, spawn a subagent with the **topic**, a **source ID** (sequential: [1], [2], ...), and the current knowledge base. Read `./references/guide-reader.md` for the subagent prompt. Each subagent reads the page and returns extracted knowledge entries plus discovered questions.
-
-After each page is processed, merge its output into the two shared files.
-
-## Step 3. Answer remaining questions (subagent per question)
-
-Once all sources have been processed, review `under-discussed.md`. For each unanswered question, spawn a subagent. Read `./references/question-researcher.md` for the subagent prompt.
+For steps labelled with `(subagent)`, run them as subagents.
