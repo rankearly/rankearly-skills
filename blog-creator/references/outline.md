@@ -4,10 +4,12 @@ Build a section-by-section outline for the blog post using the research gathered
 
 ## What You Receive
 
-- `./blogs/<topic>/knowledge-base.md` — collected knowledge from SERP pages
+- A subject to focus on.
+- A keyword that matches the subject.
+- `./blogs/<topic>/knowledge-base.md` — collected knowledge from SERP pages of the keyword
 - `./blogs/<topic>/under-discussed.md` — questions competitors don't answer well
-- `./blogs/<topic>/conversion-hooks.md` (if exists) — product tie-ins that fit the topic
-- Target word count (if specified)
+
+## Core Idea
 
 ## Outline Structure
 
@@ -34,35 +36,10 @@ Think hard about the order. The outline should read as a narrative, not a list o
 
 ## Adapt Based On
 
-- **Word count** — expand or compress sections accordingly
-- **Must-have topics** — verify knowledge base has content to cover each
-- **Under-discussed questions** — integrate 2-3 as your information gain. These are the sections where you say something the top results don't — they're what make the article worth publishing.
 - **Conversion hooks** — place them where they serve the reader (e.g., a product capability as a concrete example in the framework section, a free tier mention in the next-step conclusion). Mark these placements in the outline with `[hook: ...]`.
 
 ## Output Format
 
-Write to `./blogs/<topic>/outline.md` using this format:
-
-```
-# {Article Title}
-
-Target: ~{N} words
-
-## {H2 Title}
-{1-2 sentence description of what this section covers and the key point it makes}
-(~{word count} words)
-
-## {H2 Title}
-{1-2 sentence description of the overall section}
-(~{word count} words)
-
-### {H3 Title (optional)}
-{1-2 sentence description of this sub-point}
-
-### {H3 Title (optional)}
-{1-2 sentence description of this sub-point}
-
-...
-```
+Write to `./blogs/<topic>/outline.md` using the template at `assets/outline-template.md`.
 
 Some h2s stand alone with no h3s. Others have multiple h3s — use h3s when the section covers several distinct perspectives, steps or sub-concepts that benefit from separation. Section word counts should roughly add up to the target.
