@@ -1,6 +1,6 @@
 # Outline Audit (Subagent)
 
-Run rankearly MCP's `core-eeat-audit` tool on the outline. Save the result to `./blogs/<topic>/audit.md`.
+Run rankearly MCP's `core-eeat-audit` tool on the outline. Save the result to `{PROJECT_ROOT}/blogs/<topic>/audit.md`.
 
 ## Additional Criteria
 

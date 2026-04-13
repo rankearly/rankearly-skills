@@ -6,10 +6,10 @@ Turn the approved outline into a full blog post.
 
 Read all of these before writing:
 
-- `./blogs/<topic>/outline.md` — the approved outline
-- `./blogs/<topic>/knowledge-base.md` — SERP research
-- `./blogs/<topic>/under-discussed.md` — information gain opportunities
-- `./blogs/<topic>/conversion-hooks.md` (if exists) — product tie-ins
+- `{PROJECT_ROOT}/blogs/<topic>/outline.md` — the approved outline
+- `{PROJECT_ROOT}/blogs/<topic>/knowledge-base.md` — SERP research
+- `{PROJECT_ROOT}/blogs/<topic>/under-discussed.md` — information gain opportunities
+- `{PROJECT_ROOT}/blogs/<topic>/conversion-hooks.md` (if exists) — product tie-ins
 
 ## Writing Guidelines
 

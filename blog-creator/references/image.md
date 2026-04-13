@@ -4,7 +4,7 @@ Generate illustration image prompts for sections of a finished blog post.
 
 ## Input
 
-- The finished blog at `./blogs/<topic>/blog.md`
+- The finished blog at `{PROJECT_ROOT}/blogs/<topic>/blog.md`
 
 ## Process
 

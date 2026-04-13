@@ -25,4 +25,4 @@ If everything that should be returned is already provided in the context, skip t
    - If related → use this query
    - If not related → try a different query formulation
 4. After 3 failed attempts → stop and report: "This may not be a good content idea (no matching searches)"
-5. For the determined keyword, run /serp-gap-analysis Phase 2 (deep content gap analysis). Save the output to `./blogs/<topic>/gap-analysis.md`
+5. For the determined keyword, run /serp-gap-analysis Phase 2 (deep content gap analysis). Save the output to `{PROJECT_ROOT}/blogs/<topic>/gap-analysis.md`
