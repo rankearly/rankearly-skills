@@ -6,14 +6,14 @@ Build a section-by-section outline for the blog post using the research gathered
 
 - An idea of what to write.
 - A keyword that matches the topic, and its related search intent, SERP (title + snippet).
-- `./blogs/<topic>/knowledge-base.md` — collected knowledge from SERP pages of the keyword
-- `./blogs/<topic>/under-discussed.md` — questions competitors don't answer well
-- `./blogs/<topic>/gap-analysis.md` — competitive SERP gap analysis
+- `{PROJECT_ROOT}/blogs/<topic>/knowledge-base.md` — collected knowledge from SERP pages of the keyword
+- `{PROJECT_ROOT}/blogs/<topic>/under-discussed.md` — questions competitors don't answer well
+- `{PROJECT_ROOT}/blogs/<topic>/keyword.md` — competitive SERP gap analysis
 
 ## Process
 
 1. **Pick the content format.**
-   Read the recommended content format from `./blogs/<topic>/gap-analysis.md`. If the user has specified a different content format, use theirs instead.
+   Read the recommended content format from `{PROJECT_ROOT}/blogs/<topic>/keyword.md`. If the user has specified a different content format, use theirs instead.
 
 2. **Load the matching format template.**
    Select the corresponding template from `assets/`. Use exactly one — do not mix templates.

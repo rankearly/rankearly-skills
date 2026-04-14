@@ -16,7 +16,7 @@ Create an SEO blog post from a keyword, a topic idea, content requirements, or a
 
 ## Full write flow
 
-1. Interpret a keyword that matches what users want to write (subagent) — Ref: `references/keyword.md`. Returns: keyword + SERP analysis (title + snippet, search intent, winnability verdict)
+1. Interpret a keyword that matches what users want to write (subagent) — Ref: `references/keyword.md`. Result is saved into `{PROJECT_ROOT}/blogs/<topic>/keyword.md'`. This file is required input for all later steps — do not skip.
 2. Find information gain (subagent) — Run /content-researcher with step 1 output so it skips its own search. Result is saved into `{PROJECT_ROOT}/blogs/<topic>/knowledge-base.md`, `{PROJECT_ROOT}/blogs/<topic>/under-discussed.md`.
    - If user clearly states what to write, continue creating the outline.
    - Otherwise, suggest users to find an under-discussed angle from `{PROJECT_ROOT}/blogs/<topic>/under-discussed.md`. Stop here and wait for response.
@@ -36,3 +36,14 @@ Interpret the user's intent, flexibly route to different steps. We don't have to
 - If the draft is thin and more information should be collected -> step 2
 
 This is not an exhaustive list. Decide which step to go based on the actual intent. 
+
+## Intermediate research files
+
+`{PROJECT_ROOT}/blogs/<topic>/`
+- `keyword.md` — competitive SERP gap analysis
+- `knowledge-base.md` — knowledge base
+- `under-discussed.md` — questions competitors don't answer well
+- `outline.md` — content outline
+- `blog.md` — final blog post
+
+Ensure all files exist at the end of research.
