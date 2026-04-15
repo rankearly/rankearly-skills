@@ -18,6 +18,7 @@ Read all of these before writing:
 - **Idea first, then support.** State the point, then back it with examples or data. Never open a section with a list of examples before the reader knows what they're supporting.
 - **Source important factual claims.** Stats, specific numbers, and concrete instructions are easy to hallucinate. Link to the source using `[claim](url)` format — check `knowledge-base.md` first. If you can't verify a claim, remove it.
 - **Conversion hooks read like content, not ads.** If a hook doesn't fit smoothly, leave it out.
+- **Say it once.** Never repeat the same information in 2 different forms.
 
 ## Humanize
 
