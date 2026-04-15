@@ -19,6 +19,12 @@ Read all of these before writing:
 - **Source important factual claims.** Stats, specific numbers, and concrete instructions are easy to hallucinate. Link to the source using `[claim](url)` format — check `knowledge-base.md` first. If you can't verify a claim, remove it.
 - **Conversion hooks read like content, not ads.** If a hook doesn't fit smoothly, leave it out.
 
+## Humanize
+
+After writing, run a humanizer pass on the full blog. Reference `references/humanizer.md` for the complete pattern catalog.
+
+Do a final anti-AI pass: ask yourself "What makes this obviously AI generated?", note the remaining tells, then revise.
+
 ## Output
 
 Write the full blog post to `./blogs/<topic>/blog.md`.
