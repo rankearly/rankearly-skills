@@ -16,6 +16,8 @@ One-line description of what it is.
 |---|---|
 | {what it does} | {what the customer gains, saves, or avoids} |
 
+Source: {public URL where a reader can learn more about this offering}
+
 ## Audience
 
 ### {Segment Name}

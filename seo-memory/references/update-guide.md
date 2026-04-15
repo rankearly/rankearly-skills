@@ -10,4 +10,8 @@
 - Bad: "Supports two input modes (topic description or seed keywords) with five effort levels ranging from Ultra Low to Ultra High"
 - Drop how-it-works details, technical specs, and implementation internals.
 
+**Maintain sources:**
+- Each offering section should end with a `Source:` line linking to the public URL where a reader can learn more.
+- When adding a new offering, include its source URL. When updating an existing one, verify the source is still correct.
+
 **After writing**, show a short summary of what changed. Do not dump the full file.
