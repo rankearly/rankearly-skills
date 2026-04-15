@@ -21,6 +21,7 @@
 ## Guidance
 
 - Step titles should be action-oriented: "Configure the DNS records" not "DNS configuration."
+- Every step must tell the reader exactly what to do — not just name the activity. If a step can't be followed without domain expertise the article hasn't provided, it's too vague.
 - Some steps are simple (one sentence). Others are complex (multiple paragraphs with screenshots). Match depth to the actual difficulty.
 - If a step has a gotcha, put the warning right there — not in a separate "Common Mistakes" section the reader might never reach.
 
@@ -28,4 +29,5 @@
 
 - Don't add a "What Is [Topic]?" section when the reader clearly searched "how to do X" — they know what it is, they want instructions.
 - Don't stretch a 5-step process into 10 steps by splitting simple actions. "Click Save" is not a step.
+- Don't use vague verbs as the entire instruction. "analyze the data," "leverage your results" are not steps — they are category labels. The reader came to this article because they don't know how. Each step must answer "how, specifically?" with concrete sub-actions.
 - Don't force a FAQ if the steps and troubleshooting already cover everything.
