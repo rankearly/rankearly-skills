@@ -39,8 +39,8 @@ Build a section-by-section outline for the blog post using the research gathered
 3. **Build the outline from the template.**
    Start with the Bones, then add the Moves you selected. For each section, write a 1-3 sentence description: what claim or idea the section makes, and what key evidence or example supports it. This is a planning note, not a draft — no prose, no elaboration, no storytelling. Name sections after the actual content — not the template's generic labels. Every section must be grounded in the content topic and informed by the research files.
 
-4. **Ensure the outline is centered around the content topic.**
-   Remove or rework anything generic that could belong to any article.
+4. **Check every section against the Topic field.**
+   Every section — title, description, examples — should tie back to the declared topic. Remove or rework anything generic that could belong to any article.
 
 5. **Add conversion hooks.**
    Follow `references/conversion.md` to identify natural product mentions and write them to `conversion-hooks.md`. Then weave them into the outline, marked with `[hook: ...]`.

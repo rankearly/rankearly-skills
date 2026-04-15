@@ -1,5 +1,8 @@
 # {Article Title}
 
+**Topic:** {One sentence — the specific subject and angle this article covers}
+**Audience:** {Who this is for}
+
 Target: ~{N} words
 
 ## {H2 Title}
