@@ -21,6 +21,7 @@ Score the outline against the criteria below. For each criterion, assign Pass / 
 
 - **Heading Hierarchy.** Single H1; H2/H3 nesting is logical with no level skips.
 - **Section Chunking.** Each section owns one clear topic. Fail if a section mixes unrelated ideas.
+- **No Redundancy.** Never repeat the same information in two different forms. Fail if two sections cover the same point with different wording.
 - **Information Density.** No filler sections. Every section earns its place with real substance. Fail if sections exist just to pad word count.
 - **Flow.** Adjacent sections set up or follow from each other. If two sections feel unrelated side by side — reorder, merge, or cut.
 - **Weight matches depth.** Space is proportional to substance. Thin points should fold into a parent section or be cut.

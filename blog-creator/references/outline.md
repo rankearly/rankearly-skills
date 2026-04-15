@@ -52,4 +52,4 @@ Build a section-by-section outline for the blog post using the research gathered
 
 Write to `outline.md` using the template at `assets/outline-template.md`.
 
-Some h2s stand alone with no h3s. Others have multiple h3s — use h3s when the section covers several distinct perspectives, steps or sub-concepts that benefit from separation. Section word counts should roughly add up to the target.
+Some h2s stand alone with no h3s. Others have multiple h3s — use h3s when the section covers several distinct perspectives, steps or sub-concepts that benefit from separation.

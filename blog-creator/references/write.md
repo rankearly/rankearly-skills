@@ -14,7 +14,7 @@ Read all of these before writing:
 
 ## Writing Guidelines
 
-- **Follow the outline faithfully.** The user approved it — don't reorganize, skip sections, or add new ones. Hit the word count targets roughly.
+- **Follow the outline faithfully.** The user approved it — don't reorganize, skip sections, or add new ones.
 - **Idea first, then support.** State the point, then back it with examples or data. Never open a section with a list of examples before the reader knows what they're supporting.
 - **Source important factual claims.** Stats, specific numbers, and concrete instructions are easy to hallucinate. Link to the source using `[claim](url)` format — check `knowledge-base.md` first. If you can't verify a claim, remove it.
 - **Conversion hooks read like content, not ads.** If a hook doesn't fit smoothly, leave it out.
