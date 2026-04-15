@@ -8,7 +8,7 @@ Generate illustration image prompts for sections of a finished blog post.
 
 ## Process
 
-1. Read the blog and identify 1–3 sections where a targeted illustration would help the reader understand a specific point — a comparison, a workflow step, a before/after, or a mental model.
+1. Read the blog and identify 1–3 sections where a single idea would click faster with a picture than with words alone. Skip anything the text already makes obvious.
 
 2. Do NOT illustrate the entire section. Zero in on the single most valuable idea within that section. For example: if a section covers "three ways to do X," pick the one way that benefits most from a visual, not all three.
 
@@ -27,6 +27,5 @@ Generate illustration image prompts for sections of a finished blog post.
 ## Guidelines
 
 - **One concept per image** — keep it clean and focused, no visual clutter.
-- **Prefer diagrams, comparisons, or workflows** over decorative visuals.
 - **Skip sections that are self-explanatory** from the text alone.
 - **Be selective** — not every blog needs 3 images. One great illustration beats three mediocre ones.
