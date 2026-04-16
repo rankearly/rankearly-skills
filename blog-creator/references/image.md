@@ -8,7 +8,7 @@ Generate illustration image prompts for sections of a finished blog post.
 
 ## Process
 
-1. Read the blog and identify 1–3 sections where a single idea would click faster with a picture than with words alone. Skip anything the text already makes obvious.
+1. Read the blog and identify sections where a single idea would click faster with a picture than with words alone. Skip anything the text already makes obvious.
 
 2. Do NOT illustrate the entire section. Zero in on the single most valuable idea within that section. For example: if a section covers "three ways to do X," pick the one way that benefits most from a visual, not all three.
 

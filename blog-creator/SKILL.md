@@ -1,6 +1,6 @@
 ---
 name: blog-creator
-description: Create or rewrite SEO blog posts — handles research, outlining, and full writing. Use when the user wants to write a blog post from scratch, rewrite a thin draft, or turn an existing outline into a full blog. Triggers on "create a blog", "write a blog post", "rewrite this blog", "this draft is too thin", "help me outline", "write from this outline", or when the user provides a topic idea they want to develop into published content.
+description: Umbrella skill for ANY blog-related task — research, outline, write, audit, humanize, illustrate. Use when the user mentions blog posts, outlines, drafts, blog images, or wants to audit/humanize/rewrite blog content.
 metadata:
   displayName: Blog Creator
   status: live
@@ -30,12 +30,19 @@ For steps labelled with `(subagent)`, run them as subagents.
 
 Interpret the user's intent, flexibly route to different steps. We don't have to write from scratch every time.
 
-- Full write/rewrite for a new subject -> step 0
+- Full write/rewrite for a new subject -> step 1
+- Only need keyword/SERP research for a blog topic -> step 1 only (`references/keyword.md`)
+- Collect more information / draft is thin -> step 2
+- Create or revise an outline -> step 3 (`references/outline.md`)
 - Write a blog post from an outline -> step 4
 - Polish an existing blog without changing the outline -> step 4
-- If the draft is thin and more information should be collected -> step 2
+- Audit an outline for quality/completeness -> `references/audit-outline.md`
+- Audit a blog draft for quality/completeness -> `references/audit-blog.md`
+- Humanize a blog article (remove AI voice, make it sound natural) -> `references/humanizer.md`
+- Generate illustration images for a finished blog -> step 5 (`references/image.md`)
+- Add or review conversion hooks -> `references/conversion.md`
 
-This is not an exhaustive list. Decide which step to go based on the actual intent. 
+This is not an exhaustive list. Decide which step to go based on the actual intent.
 
 ## Intermediate research files
 
