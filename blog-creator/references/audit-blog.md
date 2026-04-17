@@ -2,7 +2,7 @@
 
 Loop:
 
-1. Call rankearly MCP's `audit_core_eeat` tool. Pass `url` for a published page, or omit `url` to audit a local draft file. Read the curl command from the response.
+1. Call rankearly MCP's `audit_content_quality` tool. Pass `url` for a published page, or omit `url` to audit a local draft file. Read the curl command from the response.
 2. Run the returned curl command. The response body is the formatted audit report.
 
 URL mode (published page) — run the curl exactly as returned, e.g.:
@@ -14,7 +14,7 @@ curl --max-time 120 --request PUT "<upload_url>"
 Draft file mode — replace the placeholder path with the real file path:
 
 ```bash
-UPLOAD_URL="<full upload_url returned by audit_core_eeat>"
+UPLOAD_URL="<full upload_url returned by audit_content_quality>"
 
 curl --max-time 120 --request PUT "${UPLOAD_URL}" \
   -H "content-type: text/markdown; charset=utf-8" \
