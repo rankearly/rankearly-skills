@@ -11,6 +11,7 @@ Build a section-by-section outline for the blog post using the research gathered
   - `knowledge-base.md` — collected knowledge from SERP pages of the keyword
   - `under-discussed.md` — questions competitors don't answer well
   - `keyword.md` — competitive SERP gap analysis
+  - `conversion-hooks.md` — selected product mentions to weave into the outline
 
 ## Process
 
@@ -43,7 +44,7 @@ Build a section-by-section outline for the blog post using the research gathered
    Every section — title, description, examples — should tie back to the declared topic. Remove or rework anything generic that could belong to any article.
 
 5. **Add conversion hooks.**
-   Follow `references/conversion.md` to identify natural product mentions and write them to `conversion-hooks.md`. Then weave them into the outline, marked with `[hook: ...]`.
+   Read `conversion-hooks.md` (already created by an earlier step). Weave the selected hooks into the outline, marked with `[hook: ...]`.
 
 6. **Audit and polish.**
    Run the audit process described in `references/audit-outline.md` on this first draft. Then revise the outline based on the review — reorder, merge, cut, or expand sections as needed — and produce the final version.
